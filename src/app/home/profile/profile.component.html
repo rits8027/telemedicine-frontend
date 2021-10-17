@@ -1,0 +1,103 @@
+<main class="container py-5 px-6">
+  <section class="py-2">
+    <h1 class="title is-2">Welcome, Dr. XYZ!</h1>
+    <h3 class="subtitle is-6">Time to wear the sthethoscope!</h3>
+
+    <div class="columns">
+      <div class="column">
+        <div class="card p-4 mr-2 transparent">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img
+                  src="https://bulma.io/images/placeholders/96x96.png"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title">
+                25
+                <small class="is-size-6 has-text-weight-normal"> / 40 </small>
+              </p>
+              <p class="subtitle is-7">Today's Appointments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card p-4 mx-1 transparent">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img
+                  src="https://bulma.io/images/placeholders/96x96.png"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title">
+                10
+                <small class="is-size-6 has-text-weight-normal"> / 40 </small>
+              </p>
+              <p class="subtitle is-7">Cancelled Appointments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card p-4 ml-2 transparent">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img
+                  src="https://bulma.io/images/placeholders/96x96.png"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div class="media-content">
+              <p class="title"><strong>200</strong></p>
+              <p class="subtitle is-7">Total Patients</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-6">
+    <h2 class="title is-3 mb-3">Appointments</h2>
+    <div class="tabs mb-1">
+      <ul>
+        <li class="is-active"><a>Day</a></li>
+        <li><a>Week</a></li>
+        <li><a>Month</a></li>
+      </ul>
+    </div>
+    <div
+      class="card p-3 mt-2 mild-transparent"
+      *ngFor="let appointment of appointments"
+    >
+      <div class="columns m-0 is-multiline has-text-centered is-vcentered">
+        <div class="column">{{ appointment.from }} - {{ appointment.to }}</div>
+        <div class="column is-half">{{ appointment.name }}</div>
+        <div class="column is-one-fifth">{{ appointment.id }}</div>
+        <div class="column">
+          <button
+            *ngIf="appointment.completed; else startBtn"
+            class="button is-rounded is-success"
+          >
+            Completed
+          </button>
+          <ng-template #startBtn>
+            <button class="button is-rounded is-black">Start</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

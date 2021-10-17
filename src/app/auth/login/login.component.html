@@ -1,0 +1,57 @@
+<div class="columns m-0 p-0" style="min-height: 100vh">
+  <div class="column" style="background-color: white">
+    <div class="center">
+      <figure class="image is-square">
+        <img src="assets/images/logo.png" />
+      </figure>
+    </div>
+  </div>
+
+  <div class="column" style="background-color: black">
+    <div class="center">
+      <form class="card transparent">
+        <header class="card-header px-2">
+          <p class="card-header-title title has-text-white">Login</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="field">
+              <label class="label has-text-white" for="userid">UserID</label>
+              <div class="control">
+                <input
+                  type="text"
+                  name="userid"
+                  class="transparent has-text-white input"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label has-text-white" for="password">
+                Password
+              </label>
+              <div class="control">
+                <input
+                  type="password"
+                  name="password"
+                  class="transparent has-text-white input"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-rounded go" (click)="login()">GO</button>
+          </div>
+          <a class="field">Forgot Password?</a>
+          <div class="field has-text-grey-light">
+            Don't have an account?
+            <a [routerLink]="['/register']" class="field">Sign Up</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

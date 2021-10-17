@@ -1,0 +1,73 @@
+<div class="columns m-0 p-0" style="min-height: 100vh">
+  <div class="column" style="background-color: black">
+    <div class="center">
+      <form class="card transparent" style="max-width: 550px">
+        <header class="card-header px-2">
+          <p class="card-header-title title has-text-white">Sign Up</p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="field">
+              <label class="label has-text-white" for="name">Name</label>
+              <div class="control">
+                <input
+                  type="text"
+                  name="name"
+                  class="transparent has-text-white input"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label has-text-white" for="phone">Phone</label>
+              <div class="control">
+                <input
+                  type="text"
+                  name="phone"
+                  class="transparent has-text-white input"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label has-text-white" for="email">Email</label>
+              <div class="control">
+                <input
+                  type="email"
+                  name="email"
+                  class="transparent has-text-white input"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label has-text-white">Department</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select class="transparent has-text-white">
+                    <option>Doctor</option>
+                    <option>Kiosk Manager</option>
+                    <option>Patient</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-rounded go" (click)="otpVerification()">
+              GO
+            </button>
+          </div>
+          <div class="field has-text-grey-light">
+            Already have an account?
+            <a [routerLink]="['/login']" class="field">Log In</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

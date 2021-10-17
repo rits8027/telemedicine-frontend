@@ -1,0 +1,26 @@
+nav {
+  background-color: black;
+  min-height: 100%;
+  margin: 0;
+}
+
+li:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+li:hover > * {
+  color: black !important;
+}
+
+.active {
+  background-color: whitesmoke;
+}
+
+.active > * {
+  color: black !important;
+}
+
+.active:hover {
+  cursor: default;
+}

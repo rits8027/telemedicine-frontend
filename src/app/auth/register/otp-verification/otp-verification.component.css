@@ -1,0 +1,24 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input {
+  text-align: center;
+  height: 9vh;
+}
+
+#otp-header {
+  color: white;
+  justify-content: center;
+}
+
+.subtitle > * {
+  color: white !important;
+}

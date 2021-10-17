@@ -1,0 +1,128 @@
+<div class="columns m-0 p-0" style="min-height: 100vh">
+  <div class="column has-text-centered" style="background-color: black">
+    <div class="center">
+      <form
+        class="card transparent"
+        style="max-width: 350px"
+        *ngIf="!successful"
+      >
+        <header class="card-header px-2">
+          <div id="otp-header" class="card-header-title title">
+            OTP Verification
+          </div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div class="field">
+              <label class="label has-text-white" for="">
+                Enter the otp sent to Mobile
+              </label>
+              <div class="field is-horizontal">
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="control has-text-grey-light pb-5 is-size-7">
+                Didn't receive the OTP?
+                <a [routerLink]="['/login']" class="field">Resend OTP</a>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label has-text-white" for="">
+                Enter the otp sent to Email
+              </label>
+              <div class="field is-horizontal">
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="control p-1">
+                  <input
+                    type="number"
+                    class="transparent has-text-white input"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="control has-text-grey-light is-size-7">
+                Didn't receive the OTP?
+                <a [routerLink]="['/login']" class="field">Resend OTP</a>
+              </div>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-rounded go" (click)="checkOtp()">
+              Verify
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div class="card transparent" *ngIf="successful" style="max-width: 750px">
+        <div class="card-content">
+          <p class="title has-text-white is-size-1 pb-5">Verified!</p>
+          <p class="subtitle has-text-light">
+            <strong>Congratulations!</strong> You have successfully created a
+            <strong>Telemedicine</strong> account.
+            <br />
+            Please login with <strong>userID</strong> and
+            <strong>password</strong> sent to your email and phone number.
+          </p>
+          <a class="button is-rounded go mt-5" [routerLink]="['/login']">
+            Proceed to Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

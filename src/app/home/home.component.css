@@ -1,0 +1,8 @@
+.gradient {
+  background: linear-gradient(
+    to right top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 25%,
+    rgba(109, 221, 221, 1) 100%
+  ) !important;
+}
