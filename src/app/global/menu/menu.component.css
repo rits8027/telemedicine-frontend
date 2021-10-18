@@ -24,3 +24,10 @@ li:hover > * {
 .active:hover {
   cursor: default;
 }
+
+/* 
+.menu-right {
+  max-width: 400px;
+  min-width: 350px;
+  float: right;
+} */

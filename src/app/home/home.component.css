@@ -6,3 +6,14 @@
     rgba(109, 221, 221, 1) 100%
   ) !important;
 }
+
+
+.logout {
+  background-color: black;
+  color: white;
+}
+
+.searchbar {
+  max-width: 500px;
+  border-radius: 10px !important;
+}

@@ -1,5 +1,5 @@
 <main class="container py-5 px-6">
-  <section class="py-2">
+  <section class="py-4">
     <h1 class="title is-2">Welcome, Dr. XYZ!</h1>
     <h3 class="subtitle is-6">Time to wear the sthethoscope!</h3>
 
@@ -69,22 +69,33 @@
     </div>
   </section>
 
-  <section class="py-6">
+  <section class="pt-6">
     <h2 class="title is-3 mb-3">Appointments</h2>
     <div class="tabs mb-1">
       <ul>
-        <li class="is-active"><a>Day</a></li>
-        <li><a>Week</a></li>
-        <li><a>Month</a></li>
+        <li [ngClass]="{'is-active' : listingType === ListingType.Day}">
+          <a (click)="setListingType(ListingType.Day)">Day</a>
+        </li>
+        <li [ngClass]="{'is-active' : listingType === ListingType.Week}">
+          <a (click)="setListingType(ListingType.Week)">Week</a>
+        </li>
+        <li [ngClass]="{'is-active' : listingType === ListingType.Month}">
+          <a (click)="setListingType(ListingType.Month)">Month</a>
+        </li>
       </ul>
     </div>
     <div
       class="card p-3 mt-2 mild-transparent"
       *ngFor="let appointment of appointments"
     >
-      <div class="columns m-0 is-multiline has-text-centered is-vcentered">
+      <div class="columns is-multiline m-0 has-text-centered is-vcentered">
         <div class="column">{{ appointment.from }} - {{ appointment.to }}</div>
-        <div class="column is-half">{{ appointment.name }}</div>
+        <div class="column is-narrow mx-4">
+          <figure class="image is-48x48">
+            <img class="is-rounded" [src]="appointment.image" [alt]="appointment.name">
+          </figure>
+        </div>
+        <div class="column is-one-third has-text-left">{{ appointment.name }}</div>
         <div class="column is-one-fifth">{{ appointment.id }}</div>
         <div class="column">
           <button

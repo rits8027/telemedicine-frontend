@@ -1,8 +1,22 @@
+
 <div class="columns is-mobile" style="min-height: 100vh">
   <div class="column is-one-quarter">
     <app-menu></app-menu>
   </div>
   <div class="column gradient">
-    <router-outlet></router-outlet>
+    <div class="px-6 py-5">
+      <div class="columns">
+        <div class="column px-4 py-2">
+          <div class="control">
+            <input class="input searchbar" type="text" name="value" placeholder="Search by keywords.." autocomplete="off">
+          </div>
+        </div>
+        <div class="column is-narrow">
+          <button class="button is-rounded logout mt-2" (click)="logout()">Log Out</button>
+        </div>
+      </div>
+    </div>
+    <!-- add width element here -->
+      <router-outlet></router-outlet>
   </div>
 </div>
