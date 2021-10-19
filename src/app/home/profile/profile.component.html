@@ -1,16 +1,19 @@
 <main class="container py-5 px-6">
   <section class="py-4">
-    <h1 class="title is-2">Welcome, Dr. XYZ!</h1>
+    <h1 class="title is-2">
+      Welcome, Dr. XYZ!
+      <button class="button is-primary is-light" style="float: right;">View Profile</button>
+    </h1>
     <h3 class="subtitle is-6">Time to wear the sthethoscope!</h3>
 
     <div class="columns">
       <div class="column">
-        <div class="card p-4 mr-2 transparent">
+        <div class="card p-5 mr-2 transparent">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
                 <img
-                  src="https://bulma.io/images/placeholders/96x96.png"
+                  src="assets/images/calendar.png"
                   alt="Placeholder image"
                 />
               </figure>
@@ -27,12 +30,12 @@
       </div>
 
       <div class="column">
-        <div class="card p-4 mx-1 transparent">
+        <div class="card p-5 mx-1 transparent">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
                 <img
-                  src="https://bulma.io/images/placeholders/96x96.png"
+                  src="assets/images/cancelled-calendar.png"
                   alt="Placeholder image"
                 />
               </figure>
@@ -49,12 +52,12 @@
       </div>
 
       <div class="column">
-        <div class="card p-4 ml-2 transparent">
+        <div class="card p-5 ml-2 transparent">
           <div class="media">
             <div class="media-left">
               <figure class="image is-48x48">
                 <img
-                  src="https://bulma.io/images/placeholders/96x96.png"
+                  src="assets/images/patients.png"
                   alt="Placeholder image"
                 />
               </figure>
@@ -100,12 +103,19 @@
         <div class="column">
           <button
             *ngIf="appointment.completed; else startBtn"
-            class="button is-rounded is-success"
-          >
-            Completed
+            class="button is-rounded is-success">
+            <figure class="image is-16x16">
+              <img src="assets/images/complete.png"/>
+            </figure>
+            <span class="pl-2">Completed</span>
           </button>
           <ng-template #startBtn>
-            <button class="button is-rounded is-black">Start</button>
+            <button class="button is-rounded is-black">
+              <figure class="image is-16x16">
+                <img src="assets/images/start.png"/>
+              </figure>
+              <span class="pl-2">Start</span>
+            </button>
           </ng-template>
         </div>
       </div>

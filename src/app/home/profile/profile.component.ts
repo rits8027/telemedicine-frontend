@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
       '10:00',
       '10:30',
       true
@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
       '10:00',
       '10:30',
       true
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
       '10:00',
       '10:30',
       true
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
       '10:00',
       '10:30',
       false
@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
       '10:00',
       '10:30',
       true
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
       '10:00',
       '10:30',
       true
@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
     new Appointment(
       '123',
       'Shouvit Pradhan',
-      'https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg',
+      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
       '10:00',
       '10:30',
       false

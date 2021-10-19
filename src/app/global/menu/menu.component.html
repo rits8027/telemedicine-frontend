@@ -7,11 +7,19 @@
       *ngFor="let menutile of menu"
       class="card p-4 mx-2 transparent"
       routerLink="{{ menutile.link }}"
-      routerLinkActive="active"
-    >
-      <span class="is-size-5 has-text-white p-2">
-        {{ menutile.name }}
-      </span>
+      routerLinkActive="active">
+      <div class="media pl-2">
+        <div class="media-left">
+          <figure class="image is-24x24">
+            <img [src]="menutile.image" [alt]="menutile.name"/>
+          </figure>
+        </div>
+        <div class="media-content">
+          <span class="is-size-6 has-text-white">
+            {{ menutile.name }}
+          </span>
+        </div>
+      </div>
     </li>
   </ul>
 </nav>

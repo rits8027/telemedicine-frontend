@@ -8,11 +8,11 @@ import { Menutile } from 'src/app/Model/menutile.model';
 })
 export class MenuComponent implements OnInit {
   menu: Menutile[] = [
-    new Menutile('Profile', 'profile'),
-    new Menutile('Meetings', 'meetings'),
-    new Menutile('Chat', 'chat'),
-    new Menutile('Settings', 'settings'),
-    new Menutile('Help & Feedback', 'help'),
+    new Menutile('Profile', 'profile', 'assets/images/profile.png'),
+    new Menutile('Meetings', 'meetings', 'assets/images/meetings.png'),
+    new Menutile('Chat', 'chat', 'assets/images/chat.png'),
+    new Menutile('Settings', 'settings', 'assets/images/settings.png'),
+    new Menutile('Help & Feedback', 'help', 'assets/images/help.png'),
   ];
 
   constructor() {}
