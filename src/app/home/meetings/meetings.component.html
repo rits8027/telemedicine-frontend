@@ -1,1 +1,14 @@
-<p>meetings works!</p>
+<section class="notification is-primary is-light has-text-centered">
+  <span class="is-size-4">You have a meeting now!</span>
+  <button class="button is-primary ml-4 is-rounded">Join</button>
+</section>
+
+<section class="py-4">
+  <h2 class="title">History</h2>
+  <div
+    class="card p-3 mt-2 mild-transparent"
+    *ngFor="let appointment of appointments"
+  >
+    <app-meeting [meeting]="appointment"></app-meeting>
+  </div>
+</section>

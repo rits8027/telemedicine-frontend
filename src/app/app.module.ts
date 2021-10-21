@@ -13,6 +13,7 @@ import { MeetingsComponent } from './home/meetings/meetings.component';
 import { ChatComponent } from './home/chat/chat.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { HelpComponent } from './help/help.component';
+import { MeetingComponent } from './home/meetings/meeting/meeting.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,11 @@ import { HelpComponent } from './help/help.component';
     MeetingsComponent,
     ChatComponent,
     SettingsComponent,
-    HelpComponent
+    HelpComponent,
+    MeetingComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
