@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  otpVerification() {
+  changePassword() {
     this.router.navigate(['/otp-verification'], {
       state: {
         email: 'shaw8wit@gmail.com',
         phone: '9347592067',
-        changePassword: false,
+        changePassword: true,
       },
     });
   }

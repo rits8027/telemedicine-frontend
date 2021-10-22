@@ -8,7 +8,7 @@
   </div>
 
   <div class="column" style="background-color: black">
-    <div class="center" style="max-width: 650px; margin: auto;">
+    <div class="center" style="max-width: 650px; margin: auto">
       <form class="card transparent">
         <header class="card-header px-2">
           <p class="card-header-title title has-text-white">Login</p>
@@ -45,10 +45,12 @@
           <div class="control">
             <button class="button is-rounded go" (click)="login()">GO</button>
           </div>
-          <a class="field">Forgot Password?</a>
+          <a [routerLink]="['/auth/forgot-password']" class="field"
+            >Forgot Password?</a
+          >
           <div class="field has-text-grey-light">
             Don't have an account?
-            <a [routerLink]="['/register']" class="field">Sign Up</a>
+            <a [routerLink]="['/auth/register']" class="field">Sign Up</a>
           </div>
         </div>
       </form>

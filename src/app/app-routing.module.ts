@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
 import { LoginComponent } from './auth/login/login.component';
-import { OtpVerificationComponent } from './auth/register/otp-verification/otp-verification.component';
+import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HelpComponent } from './help/help.component';
 import { ChatComponent } from './home/chat/chat.component';
@@ -11,10 +12,18 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { SettingsComponent } from './home/settings/settings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   { path: 'otp-verification', component: OtpVerificationComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'auth',
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'otp-verification', component: OtpVerificationComponent },
+    ],
+  },
   {
     path: 'home',
     component: HomeComponent,
@@ -27,7 +36,7 @@ const routes: Routes = [
       { path: 'help', component: HelpComponent },
     ],
   },
-  { path: '*', redirectTo: '/home' },
+  { path: '*', redirectTo: 'home' },
 ];
 
 @NgModule({

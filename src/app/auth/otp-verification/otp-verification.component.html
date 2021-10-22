@@ -3,7 +3,7 @@
     <div class="center">
       <form
         class="card transparent"
-        style="max-width: 350px"
+        style="max-width: 400px"
         *ngIf="!successful"
       >
         <header class="card-header px-2">
@@ -15,7 +15,7 @@
           <div class="content">
             <div class="field">
               <label class="label has-text-white" for="">
-                Enter the otp sent to Mobile
+                Enter the otp sent to {{ phone }}
               </label>
               <div class="field is-horizontal">
                 <div class="control p-1">
@@ -58,7 +58,7 @@
             </div>
             <div class="field">
               <label class="label has-text-white" for="">
-                Enter the otp sent to Email
+                Enter the otp sent to {{ email }}
               </label>
               <div class="field is-horizontal">
                 <div class="control p-1">
@@ -111,14 +111,17 @@
       <div class="card transparent" *ngIf="successful" style="max-width: 750px">
         <div class="card-content">
           <p class="title has-text-white is-size-1 pb-5">Verified!</p>
-          <p class="subtitle has-text-light">
+          <p class="subtitle has-text-light" *ngIf="!changePassword">
             <strong>Congratulations!</strong> You have successfully created a
-            <strong>Telemedicine</strong> account.
-            <br />
-            Please login with <strong>userID</strong> and
-            <strong>password</strong> sent to your email and phone number.
+            <strong>Telemedicine</strong> account. Please login with
+            <strong>userID</strong> and <strong>password</strong> sent to your
+            email and phone number.
           </p>
-          <a class="button is-rounded go mt-5" [routerLink]="['/login']">
+          <p class="subtitle has-text-light" *ngIf="changePassword">
+            <strong>Congratulations!</strong> You have successfully changed your
+            password for <strong>{{ email }}.</strong>
+          </p>
+          <a class="button is-rounded go mt-5" [routerLink]="['/auth']">
             Proceed to Login
           </a>
         </div>
