@@ -4,17 +4,15 @@ nav {
   margin: 0;
 }
 
-li:hover {
-  background-color: white;
+li:hover,
+.active {
+  background-color: #c3ebeb;
   cursor: pointer;
+  box-shadow: 0 0 50px #9ee8e8;
 }
 
 li:hover > * > * > * {
   color: black !important;
-}
-
-.active {
-  background-color: whitesmoke;
 }
 
 .active > * > * > * {

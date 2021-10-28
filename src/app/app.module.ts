@@ -15,6 +15,9 @@ import { SettingsComponent } from './home/settings/settings.component';
 import { HelpComponent } from './help/help.component';
 import { MeetingComponent } from './home/meetings/meeting/meeting.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
+import { DoctorComponent } from './home/profile/doctor/doctor.component';
+import { PatientComponent } from './home/profile/patient/patient.component';
+import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-pas
     HelpComponent,
     MeetingComponent,
     ForgotPasswordComponent,
+    DoctorComponent,
+    PatientComponent,
+    ProfileDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
