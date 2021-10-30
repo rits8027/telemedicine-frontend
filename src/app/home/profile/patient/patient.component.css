@@ -1,0 +1,21 @@
+.modal-card {
+  height: 520px;
+  width: 720px;
+}
+
+.modal-card-head {
+  background-color: black;
+  height: 10px;
+}
+
+.send {
+  width: 100%;
+}
+
+.modal-card-foot {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-card-body {
+  background-color: rgba(0, 0, 0, 0.1);
+}
