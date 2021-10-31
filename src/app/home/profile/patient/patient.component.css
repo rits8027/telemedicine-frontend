@@ -12,10 +12,7 @@
   width: 100%;
 }
 
-.modal-card-foot {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
+.modal-card-foot,
 .modal-card-body {
   background-color: rgba(0, 0, 0, 0.1);
 }
