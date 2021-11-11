@@ -10,10 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { MeetingsComponent } from './home/meetings/meetings.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SettingsComponent } from './home/settings/settings.component';
+import { MeetComponent } from './meet/meet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: 'otp-verification', component: OtpVerificationComponent },
+  { path: 'meet', component: MeetComponent },
   {
     path: 'auth',
     children: [

@@ -12,7 +12,7 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   changePassword() {
-    this.router.navigate(['/otp-verification'], {
+    this.router.navigate(['/auth/otp-verification'], {
       state: {
         email: 'shaw8wit@gmail.com',
         phone: '9347592067',

@@ -11,6 +11,6 @@ export class ProfileComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.isDoctor = true;
+    this.isDoctor = false;
   }
 }

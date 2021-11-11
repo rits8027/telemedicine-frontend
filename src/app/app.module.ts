@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-pas
 import { DoctorComponent } from './home/profile/doctor/doctor.component';
 import { PatientComponent } from './home/profile/patient/patient.component';
 import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';
+import { MeetComponent } from './meet/meet.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProfileDetailsComponent } from './home/profile/profile-details/profile-
     DoctorComponent,
     PatientComponent,
     ProfileDetailsComponent,
+    MeetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
