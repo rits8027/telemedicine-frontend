@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { Register } from '../register/register.model';
 
 @Component({
   selector: 'app-otp-verification',
@@ -9,19 +11,18 @@ import { filter } from 'rxjs/operators';
 })
 export class OtpVerificationComponent implements OnInit {
   successful: boolean = false;
-  email: String;
-  phone: String;
   changePassword: boolean;
+  userData: Register;
 
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.email = history.state.email;
-    this.phone = history.state.phone;
+    this.userData = history.state.userData;
     this.changePassword = history.state.changePassword;
   }
 
   checkOtp() {
     this.successful = !this.successful;
+    this.authService.createUser(this.userData);
   }
 }

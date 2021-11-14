@@ -15,7 +15,7 @@
           <div class="content">
             <div class="field">
               <label class="label has-text-white" for="">
-                Enter the otp sent to {{ phone }}
+                Enter the otp sent to {{ userData.phone }}
               </label>
               <div class="field is-horizontal">
                 <div class="control p-1">
@@ -58,7 +58,7 @@
             </div>
             <div class="field">
               <label class="label has-text-white" for="">
-                Enter the otp sent to {{ email }}
+                Enter the otp sent to {{ userData.email }}
               </label>
               <div class="field is-horizontal">
                 <div class="control p-1">
@@ -114,12 +114,12 @@
           <p class="subtitle has-text-light" *ngIf="!changePassword">
             <strong>Congratulations!</strong> You have successfully created a
             <strong>Telemedicine</strong> account. Please login with
-            <strong>userID</strong> and <strong>password</strong> sent to your
+            <strong>email</strong> and <strong>password</strong> sent to your
             email and phone number.
           </p>
           <p class="subtitle has-text-light" *ngIf="changePassword">
             <strong>Congratulations!</strong> You have successfully changed your
-            password for <strong>{{ email }}.</strong>
+            password for <strong>{{ userData.email }}.</strong>
           </p>
           <a class="button is-rounded go mt-5" [routerLink]="['/auth']">
             Proceed to Login

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Register } from './register.model';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +14,23 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  otpVerification() {
+  otpVerification(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    const userData: Register = {
+      password: form.value.password,
+      phoneNumber: form.value.phone,
+      name: form.value.name,
+      userType: form.value.userType,
+      email: form.value.email,
+      age: form.value.age,
+      confirm_password: form.value.password,
+    };
     this.router.navigate(['/auth/otp-verification'], {
       state: {
-        email: 'shaw8wit@gmail.com',
-        phone: '9347592067',
         changePassword: false,
+        userData: userData,
       },
     });
   }

@@ -1,7 +1,12 @@
 <div class="columns m-0 p-0" style="min-height: 100vh">
   <div class="column" style="background-color: black">
     <div class="center">
-      <form class="card transparent" style="max-width: 550px">
+      <form
+        class="card transparent"
+        style="max-width: 550px"
+        #signupForm="ngForm"
+        (submit)="otpVerification(signupForm)"
+      >
         <header class="card-header px-2">
           <p class="card-header-title title has-text-white">Sign Up</p>
         </header>
@@ -14,10 +19,14 @@
                   type="text"
                   name="name"
                   class="transparent has-text-white input"
-                  autocomplete="off"
                   required
+                  ngModel
+                  #name="ngModel"
                 />
               </div>
+              <!-- <mat-error *ngIf="passwordInput.invalid">
+                Please enter a valid password
+              </mat-error> -->
             </div>
             <div class="field">
               <label class="label has-text-white" for="phone">Phone</label>
@@ -26,8 +35,22 @@
                   type="text"
                   name="phone"
                   class="transparent has-text-white input"
-                  autocomplete="off"
                   required
+                  ngModel
+                  #phone="ngModel"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label has-text-white" for="age">Age</label>
+              <div class="control">
+                <input
+                  type="number"
+                  name="age"
+                  class="transparent has-text-white input"
+                  required
+                  ngModel
+                  #age="ngModel"
                 />
               </div>
             </div>
@@ -38,16 +61,25 @@
                   type="email"
                   name="email"
                   class="transparent has-text-white input"
-                  autocomplete="off"
                   required
+                  ngModel
+                  #email="ngModel"
+                  email
                 />
               </div>
             </div>
             <div class="field">
-              <label class="label has-text-white">Department</label>
+              <label class="label has-text-white" for="userType"
+                >User Type</label
+              >
               <div class="control">
                 <div class="select is-fullwidth">
-                  <select class="transparent has-text-white">
+                  <select
+                    name="userType"
+                    class="transparent has-text-white"
+                    ngModel
+                    #userType="ngModel"
+                  >
                     <option>Doctor</option>
                     <option>Kiosk Manager</option>
                     <option>Patient</option>
@@ -64,16 +96,15 @@
                   type="password"
                   name="password"
                   class="transparent has-text-white input"
-                  autocomplete="off"
                   required
+                  ngModel
+                  #password="ngModel"
                 />
               </div>
             </div>
           </div>
           <div class="control">
-            <button class="button is-rounded go" (click)="otpVerification()">
-              Next
-            </button>
+            <button class="button is-rounded go" type="submit">Next</button>
           </div>
           <div class="field has-text-grey-light">
             Already have an account?

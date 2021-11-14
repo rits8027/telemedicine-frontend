@@ -19,6 +19,8 @@ import { DoctorComponent } from './home/profile/doctor/doctor.component';
 import { PatientComponent } from './home/profile/patient/patient.component';
 import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';
 import { MeetComponent } from './meet/meet.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { MeetComponent } from './meet/meet.component';
     ProfileDetailsComponent,
     MeetComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
