@@ -9,21 +9,27 @@
 
   <div class="column" style="background-color: black">
     <div class="center" style="max-width: 650px; margin: auto">
-      <form class="card transparent">
+      <form
+        class="card transparent"
+        #loginForm="ngForm"
+        (submit)="login(loginForm)"
+      >
         <header class="card-header px-2">
           <p class="card-header-title title has-text-white">Login</p>
         </header>
         <div class="card-content">
           <div class="content">
             <div class="field">
-              <label class="label has-text-white" for="userid">UserID</label>
+              <label class="label has-text-white" for="email">Email</label>
               <div class="control">
                 <input
-                  type="text"
-                  name="userid"
+                  type="email"
+                  name="email"
                   class="transparent has-text-white input"
-                  autocomplete="off"
                   required
+                  ngModel
+                  #email="ngModel"
+                  email
                 />
               </div>
             </div>
@@ -38,12 +44,14 @@
                   class="transparent has-text-white input"
                   autocomplete="off"
                   required
+                  ngModel
+                  #password="ngModel"
                 />
               </div>
             </div>
           </div>
           <div class="control">
-            <button class="button is-rounded go" (click)="login()">GO</button>
+            <button class="button is-rounded go" type="submit">GO</button>
           </div>
           <a [routerLink]="['/auth/forgot-password']" class="field"
             >Forgot Password?</a

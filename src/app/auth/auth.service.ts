@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Register } from './register/register.model';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,22 +22,38 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
+  saveToken(data) {
+    this.token = data.token;
+    this.authStatusListener.next(true);
+    this.router.navigate(['/home']);
+  }
+
   createUser(userData: Register) {
     this.http
-      .post('http://localhost:8000/api/users/register-user', { ...userData })
+      .post<{ data: any; message: string; success: boolean }>(
+        'http://localhost:8000/api/users/register-user',
+        { ...userData }
+      )
       .subscribe((response) => {
-        console.log(response);
-        this.router.navigate(['/']);
+        if (response.success) {
+          this.saveToken(response.data);
+        }
       });
   }
 
   login(email: string, password: string) {
     this.http
-      .post<{ token: string }>('http://localhost:8000/api/users/login', {})
+      .post<{ data: any; message: string; success: boolean }>(
+        'http://localhost:8000/api/users/create-session',
+        {
+          email: email,
+          password: password,
+        }
+      )
       .subscribe((response) => {
-        this.token = response.token;
-        this.authStatusListener.next(true);
-        this.router.navigate(['/']);
+        if (response.success) {
+          this.saveToken(response.data);
+        }
       });
   }
 }
