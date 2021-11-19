@@ -6,8 +6,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HelpComponent } from './help/help.component';
-import { ChatComponent } from './home/chat/chat.component';
+import { RequestComponent } from './home/request/request.component';
 import { HomeComponent } from './home/home.component';
+import { HomeGuard } from './home/home.guard';
 import { MeetingsComponent } from './home/meetings/meetings.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SettingsComponent } from './home/settings/settings.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'meet', component: MeetComponent, canActivate: [AuthGuard] },
   {
     path: 'auth',
+    canActivate: [HomeGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'register', component: RegisterComponent },
@@ -34,7 +36,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent },
       { path: 'meetings', component: MeetingsComponent },
-      { path: 'chat', component: ChatComponent },
+      { path: 'request', component: RequestComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'help', component: HelpComponent },
     ],
@@ -45,6 +47,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, HomeGuard],
 })
 export class AppRoutingModule {}

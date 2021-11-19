@@ -10,7 +10,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { MeetingsComponent } from './home/meetings/meetings.component';
-import { ChatComponent } from './home/chat/chat.component';
+import { RequestComponent } from './home/request/request.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { HelpComponent } from './help/help.component';
 import { MeetingComponent } from './home/meetings/meeting/meeting.component';
@@ -32,7 +32,7 @@ import { FormsModule } from '@angular/forms';
     OtpVerificationComponent,
     ProfileComponent,
     MeetingsComponent,
-    ChatComponent,
+    RequestComponent,
     SettingsComponent,
     HelpComponent,
     MeetingComponent,
