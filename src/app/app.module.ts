@@ -19,8 +19,9 @@ import { DoctorComponent } from './home/profile/doctor/doctor.component';
 import { PatientComponent } from './home/profile/patient/patient.component';
 import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';
 import { MeetComponent } from './meet/meet.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ApiInterceptor } from './api.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { FormsModule } from '@angular/forms';
     MeetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

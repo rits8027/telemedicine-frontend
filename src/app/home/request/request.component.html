@@ -1,1 +1,77 @@
-<p>chat works!</p>
+<section>
+  <div style="max-width: 800px; margin: auto">
+    <header class="title is-2">Request Appointment</header>
+    <form
+      class="card transparent"
+      #requestForm="ngForm"
+      (submit)="onSubmit(requestForm)"
+    >
+      <div class="card-content">
+        <div class="content">
+          <div class="field">
+            <label class="label" for="topic">Topic</label>
+            <div class="control">
+              <input
+                type="text"
+                name="topic"
+                class="transparent input is-dark"
+                required
+                ngModel
+                #topic="ngModel"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="doctors">Doctors</label>
+            <div class="control">
+              <input
+                type="text"
+                name="doctors"
+                class="transparent input is-dark"
+                required
+                ngModel
+                #doctors="ngModel"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="startTime">Start Time</label>
+            <div class="control">
+              <input
+                type="datetime-local"
+                name="startTime"
+                class="transparent input is-dark"
+                autocomplete="off"
+                required
+                ngModel
+                #startTime="ngModel"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="endTime">End Time</label>
+            <div class="control">
+              <input
+                type="datetime-local"
+                name="endTime"
+                class="transparent input is-dark"
+                autocomplete="off"
+                required
+                ngModel
+                #endTime="ngModel"
+              />
+            </div>
+          </div>
+          <div class="control">
+            <button
+              class="button is-rounded go is-inverted is-success"
+              type="submit"
+            >
+              Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

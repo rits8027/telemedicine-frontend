@@ -8,14 +8,9 @@ import { HomeService } from './home.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private homeService: HomeService
-  ) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.homeService.getUserDetails(this.authService.getUserId());
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.authService.logout();

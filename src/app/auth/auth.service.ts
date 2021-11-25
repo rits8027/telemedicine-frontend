@@ -4,18 +4,26 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AppSettings } from '../app-settings';
 import { Register } from './register/register.model';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private user: User;
   private token: string;
   private userId: string;
   private tokenTimer: any;
+  private isDoctor = false;
+  private isUserFetched = false;
   private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  getUser() {
+    return { ...this.user };
+  }
 
   getToken() {
     return this.token;
@@ -29,8 +37,27 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getIsDoctor() {
+    return this.isDoctor;
+  }
+
+  getIsUserFetched() {
+    return this.isUserFetched;
+  }
+
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  private setUser() {
+    this.http
+      .get(AppSettings.API_ENDPOINT + '/users/' + this.userId)
+      .subscribe((response) => {
+        this.user = response['data']['user'];
+        this.isDoctor = this.user.userType.toLowerCase() === 'doctor';
+        this.isUserFetched = true;
+        this.authStatusListener.next(true);
+      });
   }
 
   private getAuthData() {
@@ -54,7 +81,7 @@ export class AuthService {
     this.token = token;
     this.userId = userId;
     this.isAuthenticated = true;
-    this.authStatusListener.next(true);
+    this.setUser();
   }
 
   autoAuthUser() {
@@ -80,7 +107,7 @@ export class AuthService {
       new Date().getTime() + expiresInDuration * 1000
     );
     this.saveAuthData(this.token, expirationDate, this.userId);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/profile']);
   }
 
   createUser(userData: Register) {
@@ -110,6 +137,7 @@ export class AuthService {
 
   logout() {
     this.token = null;
+    this.isUserFetched = false;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
