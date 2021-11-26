@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-request',
@@ -11,7 +11,11 @@ export class RequestComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(form: Form) {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
     console.log(form);
+    // this.authService.login(form.value.email, form.value.password);
   }
 }
