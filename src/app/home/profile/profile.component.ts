@@ -97,6 +97,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   setListingType(listingType: ListingType) {
     this.listingType = listingType;
   }
+
   setStatus() {
     this.loading = false;
     this.isDoctor = this.authService.getIsDoctor();

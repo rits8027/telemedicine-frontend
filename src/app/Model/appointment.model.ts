@@ -1,10 +1,10 @@
 export class Appointment {
   constructor(
-    public id: String,
-    public name: String,
-    public image: String,
-    public from: String,
-    public to: String,
+    public id: string,
+    public name: string,
+    public image: string,
+    public from: string,
+    public to: string,
     public completed: boolean
   ) {}
 }

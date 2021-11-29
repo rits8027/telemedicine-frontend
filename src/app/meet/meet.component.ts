@@ -1,19 +1,29 @@
-import { Renderer2, OnInit, Inject, Component } from '@angular/core';
+import { Renderer2, OnInit, Inject, Component, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { api_key } from '../secrets';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-meet',
   templateUrl: './meet.component.html',
   styleUrls: ['./meet.component.css'],
 })
-export class MeetComponent implements OnInit {
+export class MeetComponent implements OnInit, OnDestroy {
+  appointmentId: string;
+  private userListener: Subscription;
+
   constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document
-  ) {}
+  ) {
+    this.route.params.subscribe((params) => (this.appointmentId = params.id));
+  }
 
-  public ngOnInit() {
+  loadMeeting() {
     let script = this._renderer2.createElement('script');
     script.type = `text/javascript`;
     script.text = `
@@ -91,5 +101,17 @@ export class MeetComponent implements OnInit {
       `;
 
     this._renderer2.appendChild(this._document.body, script);
+  }
+
+  public ngOnInit() {
+    console.log(this.appointmentId);
+    if (this.authService.getIsUserFetched()) this.loadMeeting();
+    this.userListener = this.authService
+      .getAuthStatusListener()
+      .subscribe((userFetched) => userFetched && this.loadMeeting());
+  }
+
+  ngOnDestroy(): void {
+    this.userListener.unsubscribe();
   }
 }

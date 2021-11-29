@@ -13,10 +13,18 @@ import { MeetingsComponent } from './home/meetings/meetings.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { MeetComponent } from './meet/meet.component';
+import { PrescriptionComponent } from './meet/prescription/prescription.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: 'meet', component: MeetComponent, canActivate: [AuthGuard] },
+  {
+    path: 'meet/:id',
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', pathMatch: 'full', component: MeetComponent },
+      { path: 'prescription', component: PrescriptionComponent },
+    ],
+  },
   {
     path: 'auth',
     canActivate: [HomeGuard],
@@ -41,7 +49,7 @@ const routes: Routes = [
       { path: 'help', component: HelpComponent },
     ],
   },
-  { path: '*', redirectTo: 'home' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

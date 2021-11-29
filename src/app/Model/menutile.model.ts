@@ -1,7 +1,3 @@
 export class Menutile {
-  constructor(
-    public name: String, 
-    public link: String, 
-    public image: String
-  ) {}
+  constructor(public name: string, public link: string, public image: string) {}
 }

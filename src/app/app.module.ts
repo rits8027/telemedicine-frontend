@@ -20,6 +20,7 @@ import { MeetComponent } from './meet/meet.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ApiInterceptor } from './api.interceptor';
+import { PrescriptionComponent } from './meet/prescription/prescription.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ApiInterceptor } from './api.interceptor';
     ForgotPasswordComponent,
     ProfileDetailsComponent,
     MeetComponent,
+    PrescriptionComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
