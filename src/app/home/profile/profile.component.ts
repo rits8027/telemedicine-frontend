@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
@@ -107,5 +108,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userListener.unsubscribe();
+  }
+
+  query(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    console.log(form.value);
   }
 }

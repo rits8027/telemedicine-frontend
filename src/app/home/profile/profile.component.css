@@ -3,17 +3,12 @@
 }
 
 .button {
-  width: 150px !important;
-}
-
-.modal-card {
-  height: 520px;
-  width: 720px;
+  width: 120px !important;
 }
 
 .modal-card-head {
   background-color: black;
-  height: 10px;
+  height: 12px;
 }
 
 .send {
