@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { Appointment } from 'src/app/Model/appointment.model';
+import { HomeService } from '../home.service';
 
 enum ListingType {
   Day,
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
   loading = true;
   isDoctor: boolean;
+  results: string[] = [];
   listingType: ListingType;
   private userListener: Subscription;
   appointments: Appointment[] = [
@@ -85,7 +87,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return ListingType;
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private homeService: HomeService
+  ) {}
 
   ngOnInit(): void {
     this.setListingType(ListingType.Day);
@@ -103,7 +108,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loading = false;
     this.isDoctor = this.authService.getIsDoctor();
     this.user = this.authService.getUser();
-    console.log(this.user);
   }
 
   ngOnDestroy(): void {
@@ -115,5 +119,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
       return;
     }
     console.log(form.value);
+    this.homeService
+      .getResult(
+        this.user.name,
+        form.value.age + ' yrs',
+        form.value.weight + 'Kg',
+        form.value.bp,
+        form.value.symptoms.split(',')
+      )
+      .subscribe((result) => this.results.push(result['result']));
+    form.resetForm();
   }
 }

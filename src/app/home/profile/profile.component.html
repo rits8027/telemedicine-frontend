@@ -170,6 +170,9 @@
         </header>
 
         <section class="modal-card-body pr-5">
+          <div *ngFor="let result of results" class="box has-text-centered">
+            {{ result }}
+          </div>
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Age</label>
