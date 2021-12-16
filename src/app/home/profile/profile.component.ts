@@ -118,16 +118,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    console.log(form.value);
-    this.homeService
-      .getResult(
-        this.user.name,
-        form.value.age + ' yrs',
-        form.value.weight + 'Kg',
-        form.value.bp,
-        form.value.symptoms.split(',')
-      )
-      .subscribe((result) => this.results.push(result['result']));
+    this.homeService.getChatbotResult(
+      this.user.name,
+      form.value.age + ' yrs',
+      form.value.weight + 'Kg',
+      form.value.bp,
+      form.value.symptoms
+        .split(',')
+        .map((symptom) => symptom.replace(/\s/g, ''))
+    );
     form.resetForm();
   }
 }

@@ -7,21 +7,48 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root',
 })
 export class HomeService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getResult(
+  getChatbotResult(
     name: string,
     age: string,
     weight: string,
     bp: string,
     message: string[]
   ) {
-    return this.http.post<{ result: string }>(AppSettings.CHATBOT, {
-      Name: name,
-      Age: age,
-      Weight: weight,
-      'Blood Pressure': bp,
-      message: message,
-    });
+    return this.http
+      .post(AppSettings.CHATBOT, {
+        Name: name,
+        Age: age,
+        Weight: weight,
+        'Blood Pressure': bp,
+        message: message,
+      })
+      .subscribe((response) => console.log(response));
+  }
+
+  requestAppointment(
+    doctors: string[],
+    appointmentStartTime: Date,
+    appointmentEndTime: Date
+  ) {
+    return this.http
+      .post(AppSettings.API_ENDPOINT + '/appointments/create', {
+        creator: this.authService.getUserId(),
+        doctors: doctors,
+        appointmentStartTime: appointmentStartTime,
+        appointmentEndTime: appointmentEndTime,
+      })
+      .subscribe((response) => console.log(response));
+  }
+
+  getRequestedAppointments() {
+    return this.http
+      .get(
+        AppSettings.API_ENDPOINT +
+          '/appointments/requestedAppointments/' +
+          this.authService.getUserId()
+      )
+      .subscribe((response) => console.log(response));
   }
 }

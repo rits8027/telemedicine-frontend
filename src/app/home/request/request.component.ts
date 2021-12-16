@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-request',
@@ -7,15 +8,21 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./request.component.css'],
 })
 export class RequestComponent implements OnInit {
-  constructor() {}
+  constructor(private homeService: HomeService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.homeService.getRequestedAppointments();
+  }
 
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    console.log(form);
-    // this.authService.login(form.value.email, form.value.password);
+    console.log(form.value);
+    this.homeService.requestAppointment(
+      ['61953a2bae0d66eb1e68e9ff'],
+      form.value.startTime,
+      form.value.endTime
+    );
   }
 }
