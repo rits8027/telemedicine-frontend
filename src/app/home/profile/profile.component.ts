@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   loading = true;
   isDoctor: boolean;
   results: string[] = [];
+  loadingResult = false;
   listingType: ListingType;
   private userListener: Subscription;
   appointments: Appointment[] = [
@@ -118,15 +119,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    this.homeService.getChatbotResult(
-      this.user.name,
-      form.value.age + ' yrs',
-      form.value.weight + 'Kg',
-      form.value.bp,
-      form.value.symptoms
-        .split(',')
-        .map((symptom) => symptom.replace(/\s/g, ''))
-    );
-    form.resetForm();
+    this.loadingResult = true;
+    this.homeService
+      .getChatbotResult(
+        this.user.name,
+        form.value.age + ' yrs',
+        form.value.weight + 'Kg',
+        form.value.bp,
+        form.value.symptoms
+          .split(',')
+          .map((symptom) => symptom.replace(/\s/g, ''))
+      )
+      .subscribe((response) => {
+        this.results.push(response.result);
+        form.resetForm();
+        this.loadingResult = false;
+      });
   }
 }

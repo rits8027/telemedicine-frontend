@@ -16,15 +16,13 @@ export class HomeService {
     bp: string,
     message: string[]
   ) {
-    return this.http
-      .post(AppSettings.CHATBOT, {
-        Name: name,
-        Age: age,
-        Weight: weight,
-        'Blood Pressure': bp,
-        message: message,
-      })
-      .subscribe((response) => console.log(response));
+    return this.http.post<{ result: string }>(AppSettings.CHATBOT, {
+      Name: name,
+      Age: age,
+      Weight: weight,
+      'Blood Pressure': bp,
+      message: message,
+    });
   }
 
   requestAppointment(
@@ -32,23 +30,26 @@ export class HomeService {
     appointmentStartTime: Date,
     appointmentEndTime: Date
   ) {
-    return this.http
-      .post(AppSettings.API_ENDPOINT + '/appointments/create', {
-        creator: this.authService.getUserId(),
-        doctors: doctors,
-        appointmentStartTime: appointmentStartTime,
-        appointmentEndTime: appointmentEndTime,
-      })
-      .subscribe((response) => console.log(response));
+    return this.http.post(AppSettings.API_ENDPOINT + '/appointments/create', {
+      creator: this.authService.getUserId(),
+      doctors: doctors,
+      appointmentStartTime: appointmentStartTime,
+      appointmentEndTime: appointmentEndTime,
+    });
   }
 
   getRequestedAppointments() {
-    return this.http
-      .get(
-        AppSettings.API_ENDPOINT +
-          '/appointments/requestedAppointments/' +
-          this.authService.getUserId()
-      )
-      .subscribe((response) => console.log(response));
+    if (!this.authService.getIsDoctor()) return;
+    return this.http.get(
+      AppSettings.API_ENDPOINT +
+        '/appointments/requestedAppointments/' +
+        this.authService.getUserId()
+    );
+  }
+
+  getDoctors() {
+    return this.http.get<[{ _id: string; name: string }]>(
+      AppSettings.API_ENDPOINT + '/users/all-doctors'
+    );
   }
 }

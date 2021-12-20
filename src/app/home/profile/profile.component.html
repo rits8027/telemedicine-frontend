@@ -170,9 +170,18 @@
         </header>
 
         <section class="modal-card-body pr-5">
-          <div *ngFor="let result of results" class="box has-text-centered">
+          <div
+            *ngFor="let result of results"
+            class="box has-text-centered mild-transparent mb-4"
+          >
             {{ result }}
           </div>
+
+          <progress
+            *ngIf="loadingResult"
+            class="progress is-small is-primary"
+            max="100"
+          ></progress>
           <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Age</label>
