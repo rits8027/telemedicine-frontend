@@ -41,6 +41,11 @@ export class RequestComponent implements OnInit {
   }
 
   acceptAppointment(index: number) {
+    this.homeService
+      .acceptAppointment(this.requests[index]._id)
+      .subscribe((response) => {
+        console.log(response);
+      });
     this.requests.splice(index, 1);
   }
 }

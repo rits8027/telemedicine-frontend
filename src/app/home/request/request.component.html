@@ -8,10 +8,13 @@
     >
       <div class="columns is-multiline m-0 has-text-centered is-vcentered">
         <div class="column">
-          {{ request.appointmentStartTime }}
+          {{ request.appointmentStartTime | date }}
         </div>
         <div class="column">
-          {{ request.appointmentEndTime }}
+          {{ request.appointmentStartTime | date: "hh:mm a" }}
+        </div>
+        <div class="column">
+          {{ request.appointmentEndTime | date: "hh:mm a" }}
         </div>
         <div class="column">
           {{ request.creator }}

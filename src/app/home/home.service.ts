@@ -52,4 +52,11 @@ export class HomeService {
       AppSettings.API_ENDPOINT + '/users/all-doctors'
     );
   }
+
+  acceptAppointment(id: string) {
+    return this.http.post(AppSettings.API_ENDPOINT + '/appointments/accept', {
+      appointment_id: id,
+      user_id: this.authService.getUserId(),
+    });
+  }
 }
