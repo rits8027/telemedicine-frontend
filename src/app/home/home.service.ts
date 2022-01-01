@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppSettings } from '../app-settings';
 import { AuthService } from '../auth/auth.service';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +40,7 @@ export class HomeService {
   }
 
   getRequestedAppointments() {
-    if (!this.authService.getIsDoctor()) return;
+    if (!this.authService.getIsDoctor()) return of({});
     return this.http.get(
       AppSettings.API_ENDPOINT +
         '/appointments/requestedAppointments/' +

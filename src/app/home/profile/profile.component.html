@@ -1,4 +1,4 @@
-<div *ngIf="!loading">
+<section *ngIf="!isLoading" style="max-width: 950px; margin: auto">
   <div *ngIf="isDoctor; else showPatient">
     <section class="py-4">
       <header class="title is-2">
@@ -270,4 +270,4 @@
       </form>
     </section>
   </ng-template>
-</div>
+</section>

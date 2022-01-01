@@ -7,6 +7,7 @@ import { Appointment } from 'src/app/Model/appointment.model';
   styleUrls: ['./meetings.component.css'],
 })
 export class MeetingsComponent implements OnInit {
+  isLoading = true;
   appointments: Appointment[] = [
     new Appointment(
       '123',
@@ -68,5 +69,7 @@ export class MeetingsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoading = false;
+  }
 }

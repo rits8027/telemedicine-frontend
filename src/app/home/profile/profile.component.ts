@@ -19,7 +19,7 @@ enum ListingType {
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
-  loading = true;
+  isLoading = true;
   isDoctor: boolean;
   results: string[] = [];
   loadingResult = false;
@@ -106,7 +106,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   setStatus() {
-    this.loading = false;
+    this.isLoading = false;
     this.isDoctor = this.authService.getIsDoctor();
     this.user = this.authService.getUser();
   }
@@ -126,9 +126,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         form.value.age + ' yrs',
         form.value.weight + 'Kg',
         form.value.bp,
-        form.value.symptoms
-          .split(',')
-          .map((symptom) => symptom.replace(/\s/g, ''))
+        form.value.symptoms.split(',').map((symptom) => symptom.trim())
       )
       .subscribe((response) => {
         this.results.push(response.result);

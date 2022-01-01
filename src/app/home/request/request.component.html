@@ -1,7 +1,6 @@
-<section *ngIf="!isLoading" style="max-width: 750px; margin: auto">
-  <div *ngIf="requests.length > 0; else request">
+<section *ngIf="!isLoading" style="max-width: 850px; margin: auto">
+  <div *ngIf="requests.length > 0" class="pb-6">
     <header class="title is-2">Accept Appointment</header>
-
     <div
       class="card p-3 mt-2 mild-transparent"
       *ngFor="let request of requests; let i = index"
@@ -31,7 +30,7 @@
     </div>
   </div>
 
-  <ng-template #request>
+  <div class="pb-5">
     <header class="title is-2">Request Appointment</header>
     <form
       class="card mild-transparent px-4"
@@ -55,32 +54,36 @@
             >
             </ng-select>
           </div>
-          <div class="field">
-            <label class="label" for="startTime">Start Time</label>
-            <div class="control">
-              <input
-                type="datetime-local"
-                name="startTime"
-                class="input"
-                autocomplete="off"
-                required
-                ngModel
-                #startTime="ngModel"
-              />
-            </div>
-          </div>
-          <div class="field">
-            <label class="label" for="endTime">End Time</label>
-            <div class="control">
-              <input
-                type="datetime-local"
-                name="endTime"
-                class="input"
-                autocomplete="off"
-                required
-                ngModel
-                #endTime="ngModel"
-              />
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <label class="label" for="startTime">Start Time</label>
+                <div class="control">
+                  <input
+                    type="datetime-local"
+                    name="startTime"
+                    class="input"
+                    autocomplete="off"
+                    required
+                    ngModel
+                    #startTime="ngModel"
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" for="endTime">End Time</label>
+                <div class="control">
+                  <input
+                    type="datetime-local"
+                    name="endTime"
+                    class="input"
+                    autocomplete="off"
+                    required
+                    ngModel
+                    #endTime="ngModel"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div class="control">
@@ -94,5 +97,5 @@
         </div>
       </div>
     </form>
-  </ng-template>
+  </div>
 </section>
