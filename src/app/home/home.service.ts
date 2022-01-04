@@ -60,4 +60,8 @@ export class HomeService {
       user_id: this.authService.getUserId(),
     });
   }
+
+  getAppointment(id: string) {
+    return this.http.get(AppSettings.API_ENDPOINT + '/appointments/' + id);
+  }
 }

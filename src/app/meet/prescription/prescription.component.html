@@ -1,1 +1,97 @@
-<p>prescription works!</p>
+<section class="notification" style="padding: 2.5vh 5vw">
+  <div class="box" style="padding: 3vh 3vw">
+    <h1 class="title">Prescription</h1>
+    <form
+      #prescriptionForm="ngForm"
+      (submit)="onSubmitPrescription(prescriptionForm)"
+    >
+      <div class="field">
+        <label class="label" for="description">Problem Description</label>
+        <div class="control">
+          <textarea
+            class="textarea"
+            name="description"
+            placeholder="Please describe the patient's problem here."
+            required
+            ngModel
+            #description="ngModel"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="diagnosis">Diagnosis</label>
+        <div class="control">
+          <textarea
+            class="textarea"
+            name="diagnosis"
+            placeholder="Please provide the diagnosis here."
+            required
+            ngModel
+            #diagnosis="ngModel"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="tests">Suggested Tests</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            placeholder="Suggest tests"
+            name="tests"
+            required
+            ngModel
+            #tests="ngModel"
+          />
+        </div>
+        <p class="help">Seperate different tests with a comma (',').</p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="medicine-table">Suggested Medicines</label>
+        <table class="table" id="medicine-table">
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Dosage</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <input
+                      class="input"
+                      name="medicine"
+                      type="text"
+                      placeholder="Medicine Name"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="field">
+                  <div class="control">
+                    <input
+                      class="input"
+                      name="dosage"
+                      type="text"
+                      placeholder="Medicine Dosage"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="field is-grouped">
+        <p class="control">
+          <input type="submit" class="button is-primary" value="Submit" />
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
