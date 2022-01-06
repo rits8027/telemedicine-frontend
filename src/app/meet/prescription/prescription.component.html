@@ -1,10 +1,8 @@
-<section class="notification" style="padding: 2.5vh 5vw">
+<section class="notification" style="padding: 2vw 5vw; min-height: 100vh">
   <div class="box" style="padding: 3vh 3vw">
     <h1 class="title">Prescription</h1>
-    <form
-      #prescriptionForm="ngForm"
-      (submit)="onSubmitPrescription(prescriptionForm)"
-    >
+
+    <form [formGroup]="prescriptionForm" (submit)="onSubmitPrescription()">
       <div class="field">
         <label class="label" for="description">Problem Description</label>
         <div class="control">
@@ -12,9 +10,9 @@
             class="textarea"
             name="description"
             placeholder="Please describe the patient's problem here."
+            rows="3"
             required
-            ngModel
-            #description="ngModel"
+            formControlName="description"
           ></textarea>
         </div>
       </div>
@@ -26,9 +24,9 @@
             class="textarea"
             name="diagnosis"
             placeholder="Please provide the diagnosis here."
+            rows="3"
             required
-            ngModel
-            #diagnosis="ngModel"
+            formControlName="diagnosis"
           ></textarea>
         </div>
       </div>
@@ -41,9 +39,7 @@
             type="text"
             placeholder="Suggest tests"
             name="tests"
-            required
-            ngModel
-            #tests="ngModel"
+            formControlName="tests"
           />
         </div>
         <p class="help">Seperate different tests with a comma (',').</p>
@@ -51,13 +47,24 @@
 
       <div class="field">
         <label class="label" for="medicine-table">Suggested Medicines</label>
-        <table class="table" id="medicine-table">
+        <table
+          class="table is-fullwidth has-text-centered"
+          formArrayName="medicines"
+        >
           <tbody>
             <tr>
               <th>Name</th>
               <th>Dosage</th>
+              <th class="py-1">
+                <button (click)="addMedicine()" class="button is-info is-light">
+                  Add
+                </button>
+              </th>
             </tr>
-            <tr>
+            <tr
+              *ngFor="let quantity of medicines().controls; let i = index"
+              [formGroupName]="i"
+            >
               <td>
                 <div class="field">
                   <div class="control">
@@ -66,6 +73,8 @@
                       name="medicine"
                       type="text"
                       placeholder="Medicine Name"
+                      formControlName="medicine"
+                      required
                     />
                   </div>
                 </div>
@@ -78,16 +87,26 @@
                       name="dosage"
                       type="text"
                       placeholder="Medicine Dosage"
+                      formControlName="dosage"
+                      required
                     />
                   </div>
                 </div>
+              </td>
+              <td>
+                <button
+                  (click)="removeMedicine(i)"
+                  class="button is-danger is-inverted"
+                >
+                  Remove
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="field is-grouped">
+      <div class="field has-text-centered">
         <p class="control">
           <input type="submit" class="button is-primary" value="Submit" />
         </p>

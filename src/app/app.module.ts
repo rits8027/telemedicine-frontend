@@ -18,7 +18,7 @@ import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-pas
 import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';
 import { MeetComponent } from './meet/meet.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiInterceptor } from './api.interceptor';
 import { PrescriptionComponent } from './meet/prescription/prescription.component';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -48,6 +48,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     FormsModule,
     NgSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
