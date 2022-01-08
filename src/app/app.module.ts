@@ -12,7 +12,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { MeetingsComponent } from './home/meetings/meetings.component';
 import { RequestComponent } from './home/request/request.component';
 import { SettingsComponent } from './home/settings/settings.component';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './home/help/help.component';
 import { MeetingComponent } from './home/meetings/meeting/meeting.component';
 import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-password.component';
 import { ProfileDetailsComponent } from './home/profile/profile-details/profile-details.component';

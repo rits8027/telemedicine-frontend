@@ -40,7 +40,7 @@ export class HomeService {
   }
 
   getRequestedAppointments() {
-    if (!this.authService.getIsDoctor()) return of({});
+    if (!this.authService.getIsDoctor()) return of(null);
     return this.http.get(
       AppSettings.API_ENDPOINT +
         '/appointments/requestedAppointments/' +

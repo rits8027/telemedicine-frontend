@@ -16,7 +16,7 @@ export class RequestComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.getRequestedAppointments().subscribe((response) => {
-      this.requests = response['data']['list'];
+      if (response !== null) this.requests = response['data']['list'];
       this.isLoading = false;
     });
     this.homeService.getDoctors().subscribe((response) => {

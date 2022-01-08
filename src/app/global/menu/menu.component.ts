@@ -12,7 +12,7 @@ export class MenuComponent implements OnInit {
     new Menutile('Meetings', 'meetings', 'assets/images/meetings.png'),
     new Menutile('Request', 'request', 'assets/images/chat.png'),
     new Menutile('Settings', 'settings', 'assets/images/settings.png'),
-    new Menutile('Help & Feedback', 'help', 'assets/images/help.png'),
+    new Menutile('Feedback', 'feedback', 'assets/images/help.png'),
   ];
 
   constructor() {}

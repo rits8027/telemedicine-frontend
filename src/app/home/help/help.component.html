@@ -1,0 +1,46 @@
+<form
+  class="card transparent p-5"
+  #feedbackForm="ngForm"
+  (submit)="onFeedbackSubmit(feedbackForm)"
+>
+  <div class="field pb-4" *ngFor="let question of questions; let i = index">
+    <label class="label" for="q{{ i }}">{{ i + 1 }}) {{ question }}</label>
+    <div class="control columns is-mobile" name="q{{ i }}">
+      <label class="radio column">
+        <input type="radio" name="{{ i }}" required ngModel [value]="1" />
+        1
+      </label>
+      <label class="radio column">
+        <input type="radio" name="{{ i }}" ngModel [value]="2" />
+        2
+      </label>
+      <label class="radio column">
+        <input type="radio" name="{{ i }}" ngModel [value]="3" />
+        3
+      </label>
+      <label class="radio column">
+        <input type="radio" name="{{ i }}" ngModel [value]="4" />
+        4
+      </label>
+      <label class="radio column">
+        <input type="radio" name="{{ i }}" ngModel [value]="5" />
+        5
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label" for="feedback">Additional Feedback</label>
+    <div class="control">
+      <textarea
+        class="textarea"
+        name="feedback"
+        placeholder="Any additional comments."
+        rows="2"
+        ngModel
+      ></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="button is-dark">Submit</button>
+</form>

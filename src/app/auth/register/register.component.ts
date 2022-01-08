@@ -15,9 +15,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   otpVerification(form: NgForm) {
-    if (form.invalid) {
-      return;
-    }
+    if (form.invalid) return;
     const userData: Register = {
       password: form.value.password,
       phoneNumber: form.value.phone,

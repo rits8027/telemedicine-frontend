@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { HomeService } from 'src/app/home/home.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-prescription',
@@ -9,13 +11,17 @@ import { HomeService } from 'src/app/home/home.service';
   styleUrls: ['./prescription.component.css'],
 })
 export class PrescriptionComponent implements OnInit {
+  isLoading = true;
   appointmentId: string;
   prescriptionForm: FormGroup;
+  private userListener: Subscription;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private homeService: HomeService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.route.params.subscribe((params) => (this.appointmentId = params.id));
     this.prescriptionForm = this.formBuilder.group({
@@ -27,9 +33,18 @@ export class PrescriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.authService.getIsUserFetched()) this.setStatus();
+    this.userListener = this.authService
+      .getAuthStatusListener()
+      .subscribe((userFetched) => userFetched && this.setStatus());
     this.homeService
       .getAppointment(this.appointmentId)
       .subscribe((response) => console.log(response));
+  }
+
+  setStatus() {
+    this.isLoading = false;
+    if (!this.authService.getIsDoctor()) this.router.navigate(['/home']);
   }
 
   medicines(): FormArray {

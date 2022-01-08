@@ -5,7 +5,7 @@ import { ForgotPasswordComponent } from './auth/login/forgot-password/forgot-pas
 import { LoginComponent } from './auth/login/login.component';
 import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HelpComponent } from './help/help.component';
+import { HelpComponent } from './home/help/help.component';
 import { RequestComponent } from './home/request/request.component';
 import { HomeComponent } from './home/home.component';
 import { HomeGuard } from './home/home.guard';
@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'meetings', component: MeetingsComponent },
       { path: 'request', component: RequestComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'help', component: HelpComponent },
+      { path: 'feedback', component: HelpComponent },
     ],
   },
   { path: '**', redirectTo: 'home' },
