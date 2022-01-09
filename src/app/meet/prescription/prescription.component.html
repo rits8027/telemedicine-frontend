@@ -109,11 +109,42 @@
           </tbody>
         </table>
       </div>
-
-      <div class="field has-text-centered">
-        <p class="control">
-          <input type="submit" class="button is-primary" value="Submit" />
-        </p>
+      <hr />
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <label class="label">Patient details:</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input
+                class="input"
+                name="height"
+                type="text"
+                placeholder="Enter Height here"
+                formControlName="height"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input
+                class="input"
+                name="weight"
+                type="text"
+                placeholder="Enter Weight here"
+                formControlName="weight"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control is-pulled-right">
+              <button class="button is-primary" type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   </div>

@@ -29,6 +29,8 @@ export class PrescriptionComponent implements OnInit {
       diagnosis: '',
       tests: '',
       medicines: this.formBuilder.array([]),
+      height: '',
+      weight: '',
     });
   }
 
@@ -45,6 +47,7 @@ export class PrescriptionComponent implements OnInit {
   setStatus() {
     this.isLoading = false;
     if (!this.authService.getIsDoctor()) this.router.navigate(['/home']);
+    // TODO: fetch appointment here
   }
 
   medicines(): FormArray {
