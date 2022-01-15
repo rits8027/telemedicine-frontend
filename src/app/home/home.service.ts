@@ -49,9 +49,7 @@ export class HomeService {
   }
 
   getDoctors() {
-    return this.http.get<[{ _id: string; name: string }]>(
-      AppSettings.API_ENDPOINT + '/users/all-doctors'
-    );
+    return this.http.get(AppSettings.API_ENDPOINT + '/users/all-doctors');
   }
 
   acceptAppointment(id: string) {
