@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/Model/appointment.model';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-meetings',
@@ -8,68 +9,38 @@ import { Appointment } from 'src/app/Model/appointment.model';
 })
 export class MeetingsComponent implements OnInit {
   isLoading = true;
-  appointments: Appointment[] = [
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
-      '10:00',
-      '10:30',
-      true
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
-      '10:00',
-      '10:30',
-      true
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
-      '10:00',
-      '10:30',
-      true
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
-      '10:00',
-      '10:30',
-      false
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
-      '10:00',
-      '10:30',
-      true
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://cdn.imgbin.com/15/10/13/imgbin-computer-icons-user-profile-avatar-profile-LJbrar10nYY8mYWt0CUXZ8CxE.jpg',
-      '10:00',
-      '10:30',
-      true
-    ),
-    new Appointment(
-      '123',
-      'Shouvit Pradhan',
-      'https://png.pngitem.com/pimgs/s/80-800373_it-benefits-per-users-default-profile-picture-green.png',
-      '10:00',
-      '10:30',
-      false
-    ),
-  ];
+  personalAppointments: Appointment[] = [];
+  appointments: Appointment[] = [];
 
-  constructor() {}
+  constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.isLoading = false;
+    this.homeService.getMeetings().subscribe((response) => {
+      response['data']['personalAppointments'].forEach((appointment) => {
+        this.personalAppointments.push(
+          new Appointment(
+            appointment['_id'],
+            appointment['creator'],
+            appointment['doctors'][0],
+            appointment['appointmentStartTime'],
+            appointment['appointmentEndTime']
+          )
+        );
+      });
+      response['data']['appointments'].forEach((appointment) => {
+        this.appointments.push(
+          new Appointment(
+            appointment['_id'],
+            appointment['creator'],
+            appointment['doctors'][0],
+            appointment['appointmentStartTime'],
+            appointment['appointmentEndTime']
+          )
+        );
+      });
+      this.isLoading = false;
+      console.log(this.personalAppointments);
+      console.log(this.appointments);
+    });
   }
 }

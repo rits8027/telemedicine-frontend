@@ -1,5 +1,5 @@
 <section *ngIf="!isLoading" style="max-width: 900px; margin: auto">
-  <section class="notification is-primary is-light has-text-centered">
+  <!-- <section class="notification is-primary is-light has-text-centered">
     <span class="is-size-4">You have a meeting now!</span>
     <button
       class="button is-primary ml-4 is-rounded"
@@ -7,15 +7,25 @@
     >
       Join
     </button>
-  </section>
+  </section> -->
 
-  <section class="py-4">
-    <h2 class="title">History</h2>
+  <section class="py-4" *ngIf="appointments.length > 0">
+    <h2 class="title">Meetings</h2>
     <div
       class="card p-3 mt-2 mild-transparent"
       *ngFor="let appointment of appointments"
     >
-      <app-meeting [meeting]="appointment"></app-meeting>
+      <app-meeting [meeting]="appointment" [isPersonal]="false"></app-meeting>
+    </div>
+  </section>
+
+  <section class="py-4" *ngIf="personalAppointments.length > 0">
+    <h2 class="title">Personal Meetings</h2>
+    <div
+      class="card p-3 mt-2 mild-transparent"
+      *ngFor="let appointment of personalAppointments"
+    >
+      <app-meeting [meeting]="appointment" [isPersonal]="true"></app-meeting>
     </div>
   </section>
 </section>

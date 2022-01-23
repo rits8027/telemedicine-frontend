@@ -1,15 +1,18 @@
 <div class="columns is-multiline m-0 has-text-centered is-vcentered">
-  <div class="column">{{ meeting.from }} - {{ meeting.to }}</div>
-  <div class="column is-narrow mx-4">
-    <figure class="image is-48x48">
-      <img class="is-rounded" [src]="meeting.image" [alt]="meeting.name" />
-    </figure>
+  <div *ngIf="isPersonal" class="column">Dr. {{ meeting.doctor["name"] }}</div>
+  <div class="column is-3">
+    {{ meeting.start | date }}
   </div>
-  <div class="column is-one-third has-text-left">
-    {{ meeting.name }}
+  <div class="column is-2">
+    {{ meeting.start | date: "hh:mm a" }}
   </div>
-  <div class="column is-one-fifth">{{ meeting.id }}</div>
-  <div class="column">
+  <div class="column is-2">
+    {{ meeting.end | date: "hh:mm a" }}
+  </div>
+  <div *ngIf="!isPersonal" class="column">
+    {{ meeting.requester["name"] }}
+  </div>
+  <div class="column is-narrow">
     <button class="button transparent borderless" (click)="toggleDetails()">
       <figure class="image is-24x24">
         <img src="assets/images/arrow.png" />

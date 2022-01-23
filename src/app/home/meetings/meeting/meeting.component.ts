@@ -8,6 +8,7 @@ import { Appointment } from 'src/app/Model/appointment.model';
 })
 export class MeetingComponent implements OnInit {
   @Input() meeting: Appointment;
+  @Input() isPersonal: boolean;
   showDetails: boolean;
 
   constructor() {}

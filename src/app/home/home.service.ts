@@ -40,16 +40,25 @@ export class HomeService {
   }
 
   getRequestedAppointments() {
-    if (!this.authService.getIsDoctor()) return of(null);
-    return this.http.get(
-      AppSettings.API_ENDPOINT +
-        '/appointments/requestedAppointments/' +
-        this.authService.getUserId()
-    );
+    return !this.authService.getIsDoctor()
+      ? of(null)
+      : this.http.get(
+          AppSettings.API_ENDPOINT +
+            '/appointments/requestedAppointments/' +
+            this.authService.getUserId()
+        );
   }
 
   getDoctors() {
     return this.http.get(AppSettings.API_ENDPOINT + '/users/all-doctors');
+  }
+
+  getMeetings() {
+    return this.http.get(
+      AppSettings.API_ENDPOINT +
+        '/appointments/createdAppointments/' +
+        this.authService.getUserId()
+    );
   }
 
   acceptAppointment(id: string) {
