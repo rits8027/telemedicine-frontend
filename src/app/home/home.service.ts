@@ -40,13 +40,11 @@ export class HomeService {
   }
 
   getRequestedAppointments() {
-    return !this.authService.getIsDoctor()
-      ? of(null)
-      : this.http.get(
-          AppSettings.API_ENDPOINT +
-            '/appointments/requestedAppointments/' +
-            this.authService.getUserId()
-        );
+    return this.http.get(
+      AppSettings.API_ENDPOINT +
+        '/appointments/requestedAppointments/' +
+        this.authService.getUserId()
+    );
   }
 
   getDoctors() {

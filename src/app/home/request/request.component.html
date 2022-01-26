@@ -1,6 +1,6 @@
 <section *ngIf="!isLoading" style="max-width: 850px; margin: auto">
   <div *ngIf="requests.length > 0" class="pb-6">
-    <header class="title is-2">Accept Appointment</header>
+    <header class="title">Accept Appointment</header>
     <div
       class="card p-3 mt-2 mild-transparent"
       *ngFor="let request of requests; let i = index"
@@ -31,7 +31,7 @@
   </div>
 
   <div class="pb-5">
-    <header class="title is-2">Request Appointment</header>
+    <header class="title">Request Appointment</header>
     <form
       class="card mild-transparent px-4"
       #requestForm="ngForm"

@@ -15,12 +15,12 @@ export class RequestComponent implements OnInit {
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.homeService.getDoctors().subscribe((response) => {
-      this.doctors = response['data']['doctors'];
-      this.isLoading = false;
-    });
     this.homeService.getRequestedAppointments().subscribe((response) => {
       if (response !== null) this.requests = response['data']['list'];
+      this.isLoading = false;
+    });
+    this.homeService.getDoctors().subscribe((response) => {
+      this.doctors = response['data']['doctors'];
       this.isLoading = false;
     });
   }

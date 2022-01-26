@@ -39,8 +39,6 @@ export class MeetingsComponent implements OnInit {
         );
       });
       this.isLoading = false;
-      console.log(this.personalAppointments);
-      console.log(this.appointments);
     });
   }
 }
