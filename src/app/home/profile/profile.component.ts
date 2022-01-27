@@ -76,4 +76,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.loadingResult = false;
       });
   }
+
+  startRoom() {
+    console.log('room started');
+  }
 }

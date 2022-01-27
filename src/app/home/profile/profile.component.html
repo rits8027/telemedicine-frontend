@@ -1,13 +1,10 @@
 <section *ngIf="!isLoading" style="max-width: 950px; margin: auto">
   <div *ngIf="isDoctor; else showPatient">
     <section class="py-4">
-      <header class="title is-2">
-        Welcome, Dr. {{ user.name }}!
-        <!-- <button class="view-profile button">View Profile</button> -->
-      </header>
+      <header class="title is-2">Welcome, Dr. {{ user.name }}!</header>
       <h2 class="subtitle is-6">Time to wear the stethoscope!</h2>
 
-      <div class="columns">
+      <div class="columns py-4">
         <div class="column">
           <div class="card p-5 mr-2 transparent">
             <div class="media p-1">
@@ -69,6 +66,12 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="columns has-text-centered pt-5">
+        <div class="column">
+          <span><a (click)="startRoom()"></a></span>
         </div>
       </div>
     </section>

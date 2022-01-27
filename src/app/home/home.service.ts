@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppSettings } from '../app-settings';
 import { AuthService } from '../auth/auth.service';
-import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
