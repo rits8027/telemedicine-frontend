@@ -3,14 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
-import { Appointment } from 'src/app/Model/appointment.model';
 import { HomeService } from '../home.service';
-
-enum ListingType {
-  Day,
-  Week,
-  Month,
-}
 
 @Component({
   selector: 'app-profile',
@@ -23,12 +16,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isDoctor: boolean;
   results: string[] = [];
   loadingResult = false;
-  listingType: ListingType;
   private userListener: Subscription;
-
-  public get ListingType(): typeof ListingType {
-    return ListingType;
-  }
 
   constructor(
     private authService: AuthService,
@@ -36,15 +24,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.setListingType(ListingType.Day);
     if (this.authService.getIsUserFetched()) this.setStatus();
     this.userListener = this.authService
       .getAuthStatusListener()
       .subscribe((userFetched) => userFetched && this.setStatus());
-  }
-
-  setListingType(listingType: ListingType) {
-    this.listingType = listingType;
   }
 
   setStatus() {

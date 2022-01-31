@@ -1,4 +1,11 @@
 <div class="columns is-multiline m-0 has-text-centered is-vcentered">
+  <div class="column is-narrow">
+    <button class="button transparent borderless" (click)="toggleDetails()">
+      <figure class="image is-24x24">
+        <img src="assets/images/arrow.png" />
+      </figure>
+    </button>
+  </div>
   <div *ngIf="isPersonal" class="column">Dr. {{ meeting.doctor["name"] }}</div>
   <div class="column is-3">
     {{ meeting.start | date }}
@@ -13,10 +20,12 @@
     {{ meeting.requester["name"] }}
   </div>
   <div class="column is-narrow">
-    <button class="button transparent borderless" (click)="toggleDetails()">
-      <figure class="image is-24x24">
-        <img src="assets/images/arrow.png" />
-      </figure>
+    <button
+      [disabled]="!canStart"
+      class="button is-success"
+      (click)="startMeeting()"
+    >
+      Start
     </button>
   </div>
 </div>

@@ -39,15 +39,20 @@ export class PrescriptionComponent implements OnInit {
     this.userListener = this.authService
       .getAuthStatusListener()
       .subscribe((userFetched) => userFetched && this.setStatus());
-    this.homeService
-      .getAppointment(this.appointmentId)
-      .subscribe((response) => console.log(response));
+    this.homeService.getAppointment(this.appointmentId).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        // show error
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   setStatus() {
     this.isLoading = false;
     if (!this.authService.getIsDoctor()) this.router.navigate(['/home']);
-    // TODO: fetch appointment here
   }
 
   medicines(): FormArray {
@@ -71,6 +76,8 @@ export class PrescriptionComponent implements OnInit {
 
   onSubmitPrescription() {
     if (this.prescriptionForm.invalid) return;
-    console.log(this.prescriptionForm.value);
+    this.homeService
+      .savePrescription(this.prescriptionForm.value, this.appointmentId)
+      .subscribe((response) => console.log(response));
   }
 }

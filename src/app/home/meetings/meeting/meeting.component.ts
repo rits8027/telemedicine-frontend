@@ -10,14 +10,23 @@ export class MeetingComponent implements OnInit {
   @Input() meeting: Appointment;
   @Input() isPersonal: boolean;
   showDetails: boolean;
+  canStart = false;
 
   constructor() {}
 
   ngOnInit(): void {
+    const now = new Date().getTime();
+    const start = new Date(this.meeting.start).getTime();
+    const end = new Date(this.meeting.end).getTime();
+    this.canStart = start <= now && end > now;
     this.showDetails = false;
   }
 
   toggleDetails() {
     this.showDetails = !this.showDetails;
+  }
+
+  startMeeting() {
+    console.log('meeting started');
   }
 }
