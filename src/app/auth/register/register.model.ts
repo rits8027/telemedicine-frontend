@@ -4,6 +4,8 @@ export interface Register {
   name: string;
   userType: string;
   email: string;
-  age: number;
+  dob: string;
   confirm_password: string;
+  gender: string;
+  bloodGroup: string;
 }

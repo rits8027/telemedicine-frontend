@@ -22,8 +22,10 @@ export class RegisterComponent implements OnInit {
       name: form.value.name,
       userType: form.value.userType,
       email: form.value.email,
-      age: form.value.age,
+      dob: form.value.dob,
       confirm_password: form.value.password,
+      gender: form.value.gender,
+      bloodGroup: form.value.bloodGroup,
     };
     this.router.navigate(['/auth/otp-verification'], {
       state: {

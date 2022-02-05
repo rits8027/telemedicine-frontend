@@ -41,17 +41,36 @@
                 />
               </div>
             </div>
-            <div class="field">
-              <label class="label has-text-white" for="age">Age</label>
-              <div class="control">
-                <input
-                  type="number"
-                  name="age"
-                  class="transparent has-text-white input"
-                  required
-                  ngModel
-                  #age="ngModel"
-                />
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label has-text-white" for="dob">DOB</label>
+                  <div class="control">
+                    <input
+                      type="date"
+                      name="dob"
+                      class="transparent has-text-white input"
+                      required
+                      ngModel
+                      #dob="ngModel"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label has-text-white" for="bloodGroup"
+                    >Blood Group</label
+                  >
+                  <div class="control">
+                    <input
+                      type="text"
+                      name="bloodGroup"
+                      class="transparent has-text-white input"
+                      required
+                      ngModel
+                      #bloodGroup="ngModel"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
             <div class="field">
@@ -68,22 +87,46 @@
                 />
               </div>
             </div>
-            <div class="field">
-              <label class="label has-text-white" for="userType"
-                >User Type</label
-              >
-              <div class="control">
-                <div class="select is-fullwidth">
-                  <select
-                    name="userType"
-                    class="transparent has-text-white"
-                    ngModel
-                    #userType="ngModel"
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label has-text-white" for="userType"
+                    >User Type</label
                   >
-                    <option>Doctor</option>
-                    <option>Kiosk Manager</option>
-                    <option>Patient</option>
-                  </select>
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select
+                        name="userType"
+                        class="transparent has-text-white"
+                        ngModel
+                        #userType="ngModel"
+                      >
+                        <option>Doctor</option>
+                        <option>Kiosk_admin</option>
+                        <option>Patient</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label has-text-white" for="gender"
+                    >Gender</label
+                  >
+                  <div class="control">
+                    <div class="select is-fullwidth">
+                      <select
+                        name="gender"
+                        class="transparent has-text-white"
+                        ngModel
+                        #gender="ngModel"
+                      >
+                        <option>Non-binary</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Undisclosed</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

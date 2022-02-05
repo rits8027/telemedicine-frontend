@@ -2,6 +2,10 @@
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 .go {
   background-color: white;
   font-weight: bold;

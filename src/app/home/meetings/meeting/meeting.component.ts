@@ -33,11 +33,12 @@ export class MeetingComponent implements OnInit {
   }
 
   loadPrescription(id: string) {
-    this.homeService.getPrescriptions(id).subscribe((response) => {
-      if (response['data']['prescriptions'].length == 0) {
-        // add notification
-        this.router.navigate([`/meet/${id}/prescription`]);
-      }
-    });
+    if (!this.isPersonal)
+      this.homeService.getPrescriptions(id).subscribe((response) => {
+        if (response['data']['prescriptions'].length == 0) {
+          // add notification
+          this.router.navigate([`/meet/${id}/prescription`]);
+        }
+      });
   }
 }
