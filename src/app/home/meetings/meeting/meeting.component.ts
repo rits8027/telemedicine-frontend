@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Appointment } from 'src/app/Model/appointment.model';
+import { HomeService } from '../../home.service';
 
 @Component({
   selector: 'app-meeting',
@@ -12,7 +14,7 @@ export class MeetingComponent implements OnInit {
   showDetails: boolean;
   canStart = false;
 
-  constructor() {}
+  constructor(private router: Router, private homeService: HomeService) {}
 
   ngOnInit(): void {
     const now = new Date().getTime();
@@ -28,5 +30,14 @@ export class MeetingComponent implements OnInit {
 
   startMeeting() {
     console.log('meeting started');
+  }
+
+  loadPrescription(id: string) {
+    this.homeService.getPrescriptions(id).subscribe((response) => {
+      if (response['data']['prescriptions'].length == 0) {
+        // add notification
+        this.router.navigate([`/meet/${id}/prescription`]);
+      }
+    });
   }
 }

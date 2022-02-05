@@ -46,7 +46,10 @@
     </div>
   </div>
   <div class="column">
-    <div class="tinted-transparent card mx-1 p-5">
+    <div
+      class="tinted-transparent card mx-1 p-5"
+      (click)="loadPrescription(meeting.id)"
+    >
       <div class="media">
         <div class="media-left">
           <figure class="image is-32x32">

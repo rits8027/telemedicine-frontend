@@ -69,6 +69,12 @@
         </div>
       </div>
 
+      <progress
+        *ngIf="loadingResult"
+        class="progress is-small is-primary"
+        max="100"
+      ></progress>
+
       <div class="columns has-text-centered pt-5">
         <div class="column">
           <span><a (click)="startRoom()"></a></span>

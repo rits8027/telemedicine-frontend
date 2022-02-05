@@ -78,6 +78,9 @@ export class PrescriptionComponent implements OnInit {
     if (this.prescriptionForm.invalid) return;
     this.homeService
       .savePrescription(this.prescriptionForm.value, this.appointmentId)
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => {
+        // display notification
+        this.router.navigate(['/home']);
+      });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
@@ -20,7 +21,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   startRoom() {
-    console.log('room started');
+    this.loadingResult = true;
+    this.homeService.setAvailabilityStatus(true).subscribe((_) => {
+      if (this.isDoctor)
+        this.homeService.startRoom([this.user['_id']]).subscribe((response) => {
+          this.loadingResult = false;
+          this.router.navigate([
+            '/meet/' + response['data']['appointment']['_id'],
+          ]);
+        });
+    });
   }
 }

@@ -84,4 +84,26 @@ export class HomeService {
       },
     });
   }
+
+  getPrescriptions(id: string) {
+    return this.http.get(
+      AppSettings.API_ENDPOINT + '/appointments/' + id + '/prescriptions'
+    );
+  }
+
+  setAvailabilityStatus(status: boolean) {
+    return this.http.patch(AppSettings.API_ENDPOINT + '/kiosk/makeAvailable', {
+      id: this.authService.getUserId(),
+      status: status,
+    });
+  }
+
+  startRoom(doctors: string[]) {
+    return this.http.post(AppSettings.API_ENDPOINT + '/appointments/create', {
+      creator: this.authService.getUserId(),
+      doctors: doctors,
+      enabled: true,
+      kioskRoom: true,
+    });
+  }
 }
