@@ -12,11 +12,15 @@ import { HomeService } from '../home.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  rooms = [];
   user: User;
+  patients = [];
   isLoading = true;
+  isKiosk: boolean;
   isDoctor: boolean;
-  results: string[] = [];
+  ageFromDob: number;
   loadingResult = false;
+  results: string[] = [];
   private userListener: Subscription;
 
   constructor(
@@ -33,9 +37,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   setStatus() {
-    this.isLoading = false;
     this.isDoctor = this.authService.getIsDoctor();
+    this.isKiosk = this.authService.getIsKiosk();
     this.user = this.authService.getUser();
+    if (!this.isDoctor) {
+      this.ageFromDob = Math.round(
+        (Date.now() - +new Date(this.user.dob)) / 31557600000
+      );
+      if (this.isKiosk) {
+        this.homeService.getRooms().subscribe((response) => {
+          this.rooms = response['data'];
+          this.homeService.getPatients().subscribe((response) => {
+            this.patients = response['data'];
+            this.isLoading = false;
+          });
+        });
+      }
+    }
   }
 
   ngOnDestroy(): void {
@@ -73,5 +91,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ]);
         });
     });
+  }
+
+  joinRoom(selectRoom) {
+    if (selectRoom.invalid) return;
+    this.router.navigate(['/meet/' + selectRoom.value]);
+  }
+
+  addToRoom(selectRoom, selectPatient) {
+    if (selectRoom.invalid || selectPatient.invalid) return;
+    console.log(selectRoom.value);
+    console.log(selectPatient.value);
+    // TODO: add patient to atendeeList in appointment
   }
 }

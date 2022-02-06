@@ -4,5 +4,7 @@ export interface User {
   name: string;
   userType: string;
   email: string;
-  age: number;
+  dob: Date;
+  gender: string;
+  bloodGroup: string;
 }

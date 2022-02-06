@@ -1,5 +1,5 @@
 <section *ngIf="!isLoading" style="max-width: 950px; margin: auto">
-  <div *ngIf="isDoctor; else showPatient">
+  <div *ngIf="isDoctor; else notDoc">
     <section class="py-4">
       <header class="title is-2">Welcome, Dr. {{ user.name }}!</header>
       <h2 class="subtitle is-6">Time to wear the stethoscope!</h2>
@@ -83,9 +83,10 @@
     </section>
   </div>
 
-  <ng-template #showPatient>
+  <ng-template #notDoc>
     <section class="py-4">
-      <h1 class="title is-2">Welcome back!</h1>
+      <h1 class="title is-2" *ngIf="!isKiosk">Welcome back!</h1>
+      <h1 class="title is-2" *ngIf="isKiosk">Welcome KIOSK!</h1>
       <div class="py-4">
         <div class="columns mr-2" style="max-width: 600px">
           <div class="column pr-5">
@@ -103,9 +104,69 @@
               <p class="subtitle">
                 {{ user.phoneNumber }}
                 <br />
-                Age: <strong>{{ user.age }}</strong>
+                Age: <strong>{{ ageFromDob }}</strong>
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isKiosk">
+        <hr />
+
+        <h4 class="title is-4">Join or add patient to an open room:</h4>
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static"> Dr.</a>
+          </p>
+          <div class="control send">
+            <div class="select is-fullwidth">
+              <select
+                name="selectRoom"
+                class="transparent"
+                ngModel
+                #selectRoom="ngModel"
+                required
+              >
+                <option *ngFor="let room of rooms" [value]="room._id">
+                  {{ room.doctors[0].name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="control">
+            <a class="button is-warning" (click)="joinRoom(selectRoom)">
+              Join Room
+            </a>
+          </div>
+        </div>
+
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">Patient</a>
+          </p>
+          <div class="control send">
+            <div class="select is-fullwidth">
+              <select
+                name="selectPatient"
+                class="transparent"
+                ngModel
+                #selectPatient="ngModel"
+                required
+              >
+                <option *ngFor="let patient of patients" [value]="patient._id">
+                  {{ patient.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="control">
+            <a
+              class="button is-link"
+              (click)="addToRoom(selectRoom, selectPatient)"
+            >
+              Add
+            </a>
           </div>
         </div>
       </div>

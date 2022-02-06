@@ -106,4 +106,12 @@ export class HomeService {
       kioskRoom: true,
     });
   }
+
+  getRooms() {
+    return this.http.get(AppSettings.API_ENDPOINT + '/kiosk/availableRooms');
+  }
+
+  getPatients() {
+    return this.http.get(AppSettings.API_ENDPOINT + '/users/all-patients');
+  }
 }

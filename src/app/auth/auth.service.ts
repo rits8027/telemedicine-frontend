@@ -14,6 +14,7 @@ export class AuthService {
   private token: string;
   private userId: string;
   private tokenTimer: any;
+  private isKiosk = false;
   private isDoctor = false;
   private isUserFetched = false;
   private isAuthenticated = false;
@@ -41,6 +42,10 @@ export class AuthService {
     return this.isDoctor;
   }
 
+  getIsKiosk() {
+    return this.isKiosk;
+  }
+
   getIsUserFetched() {
     return this.isUserFetched;
   }
@@ -53,8 +58,9 @@ export class AuthService {
     this.http
       .get(AppSettings.API_ENDPOINT + '/users/' + this.userId)
       .subscribe((response) => {
-        this.user = response['data']['user'];
+        this.user = response['data'];
         this.isDoctor = this.user.userType.toLowerCase() === 'doctor';
+        this.isKiosk = this.user.userType.toLowerCase() === 'kiosk_admin';
         this.isUserFetched = true;
         this.authStatusListener.next(true);
       });
