@@ -71,11 +71,11 @@
 
       <progress
         *ngIf="loadingResult"
-        class="progress is-small is-primary"
+        class="progress is-primary"
         max="100"
       ></progress>
 
-      <div class="columns has-text-centered pt-5">
+      <div class="columns has-text-centered py-6">
         <div class="column">
           <span><a (click)="startRoom()"></a></span>
         </div>
@@ -86,7 +86,7 @@
   <ng-template #notDoc>
     <section class="py-4">
       <h1 class="title is-2" *ngIf="!isKiosk">Welcome back!</h1>
-      <h1 class="title is-2" *ngIf="isKiosk">Welcome KIOSK!</h1>
+      <h1 class="title is-2" *ngIf="isKiosk">Welcome, KIOSK!</h1>
       <div class="py-4">
         <div class="columns mr-2" style="max-width: 600px">
           <div class="column pr-5">
@@ -172,113 +172,111 @@
       </div>
 
       <hr />
-
-      <form class="modal-card" #chatbotForm="ngForm">
-        <header class="modal-card-head">
-          <p class="modal-card-title has-text-centered has-text-white">
-            Chatbot
-          </p>
-        </header>
-
-        <section class="modal-card-body pr-5">
-          <div
-            *ngFor="let result of results"
-            class="box has-text-centered mild-transparent mb-4"
-          >
-            {{ result }}
-          </div>
-
-          <progress
-            *ngIf="loadingResult"
-            class="progress is-small is-primary"
-            max="100"
-          ></progress>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Age</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="number"
-                    placeholder="Enter your Age"
-                    required
-                    ngModel
-                    name="age"
-                    #age="ngModel"
-                  />
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Weight</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="number"
-                    placeholder="Enter your Weight in kilograms"
-                    required
-                    ngModel
-                    name="weight"
-                    #weight="ngModel"
-                  />
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">BP</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="number"
-                    placeholder="Enter your Blood Pressure"
-                    required
-                    ngModel
-                    name="bp"
-                    #bp="ngModel"
-                  />
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <footer class="modal-card-foot pt-0 pb-5 px-5">
-          <div class="field has-addons send">
-            <div class="control is-expanded">
-              <input
-                class="input is-rounded"
-                type="text"
-                placeholder="Enter your symptoms comma seperated"
-                required
-                ngModel
-                name="symptoms"
-                #symptoms="ngModel"
-              />
-            </div>
-            <div class="control">
-              <a
-                class="button is-dark is-rounded"
-                type="submit"
-                (click)="query(chatbotForm)"
-              >
-                Send
-              </a>
-            </div>
-          </div>
-        </footer>
-      </form>
     </section>
   </ng-template>
+
+  <form class="modal-card" #chatbotForm="ngForm">
+    <header class="modal-card-head">
+      <p class="modal-card-title has-text-centered has-text-white">Chatbot</p>
+    </header>
+
+    <section class="modal-card-body pr-5">
+      <div
+        *ngFor="let result of results"
+        class="box has-text-centered mild-transparent mb-4"
+      >
+        {{ result }}
+      </div>
+
+      <progress
+        *ngIf="loadingResult"
+        class="progress is-small is-primary"
+        max="100"
+      ></progress>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Age</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="Enter your Age"
+                required
+                ngModel
+                name="age"
+                #age="ngModel"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">Weight</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="Enter your Weight in kilograms"
+                required
+                ngModel
+                name="weight"
+                #weight="ngModel"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">BP</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="Enter your Blood Pressure"
+                required
+                ngModel
+                name="bp"
+                #bp="ngModel"
+              />
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot pt-0 pb-5 px-5">
+      <div class="field has-addons send">
+        <div class="control is-expanded">
+          <input
+            class="input is-rounded"
+            type="text"
+            placeholder="Enter your symptoms comma seperated"
+            required
+            ngModel
+            name="symptoms"
+            #symptoms="ngModel"
+          />
+        </div>
+        <div class="control">
+          <a
+            class="button is-dark is-rounded"
+            type="submit"
+            (click)="query(chatbotForm)"
+          >
+            Send
+          </a>
+        </div>
+      </div>
+    </footer>
+  </form>
 </section>

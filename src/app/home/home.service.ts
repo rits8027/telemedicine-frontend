@@ -114,4 +114,14 @@ export class HomeService {
   getPatients() {
     return this.http.get(AppSettings.API_ENDPOINT + '/users/all-patients');
   }
+
+  addPatientToRoom(roomId: string, patientId: string) {
+    return this.http.patch(
+      AppSettings.API_ENDPOINT + '/kiosk/addPatientToRoom',
+      {
+        roomId: roomId,
+        patientId: patientId,
+      }
+    );
+  }
 }

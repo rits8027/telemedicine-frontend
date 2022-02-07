@@ -5,7 +5,7 @@
 >
   <div class="field pb-4" *ngFor="let question of questions; let i = index">
     <label class="label" for="q{{ i }}">{{ i + 1 }}) {{ question }}</label>
-    <div class="control columns is-mobile" name="q{{ i }}">
+    <div class="control columns is-mobile" [attr.data-name]="i">
       <label class="radio column">
         <input type="radio" name="{{ i }}" required ngModel [value]="1" />
         1

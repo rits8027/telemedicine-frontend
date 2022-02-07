@@ -52,8 +52,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.isLoading = false;
           });
         });
-      }
-    }
+      } else this.isLoading = false;
+    } else this.isLoading = false;
   }
 
   ngOnDestroy(): void {
@@ -102,6 +102,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (selectRoom.invalid || selectPatient.invalid) return;
     console.log(selectRoom.value);
     console.log(selectPatient.value);
-    // TODO: add patient to atendeeList in appointment
+    this.homeService
+      .addPatientToRoom(selectRoom.value, selectPatient.value)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 }
