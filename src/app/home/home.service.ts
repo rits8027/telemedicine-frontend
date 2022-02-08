@@ -33,6 +33,7 @@ export class HomeService {
     return this.http.post(AppSettings.API_ENDPOINT + '/appointments/create', {
       creator: this.authService.getUserId(),
       doctors: doctors,
+      attendees: [this.authService.getUserId()],
       appointmentStartTime: appointmentStartTime,
       appointmentEndTime: appointmentEndTime,
     });
@@ -123,5 +124,11 @@ export class HomeService {
         patientId: patientId,
       }
     );
+  }
+
+  disableRoom(id: string) {
+    return this.http.patch(AppSettings.API_ENDPOINT + '/kiosk/disable', {
+      id: id,
+    });
   }
 }

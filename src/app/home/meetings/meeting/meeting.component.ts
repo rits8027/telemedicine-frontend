@@ -28,8 +28,8 @@ export class MeetingComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
-  startMeeting() {
-    console.log('meeting started');
+  startMeeting(id: string) {
+    this.router.navigate([`/meet/${id}`]);
   }
 
   loadPrescription(id: string) {

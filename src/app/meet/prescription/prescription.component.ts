@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { HomeService } from 'src/app/home/home.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './prescription.component.html',
   styleUrls: ['./prescription.component.css'],
 })
-export class PrescriptionComponent implements OnInit {
+export class PrescriptionComponent implements OnInit, OnDestroy {
   isLoading = true;
   appointmentId: string;
   prescriptionForm: FormGroup;
@@ -48,6 +48,10 @@ export class PrescriptionComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.userListener.unsubscribe();
   }
 
   setStatus() {

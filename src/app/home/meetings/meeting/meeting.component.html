@@ -23,7 +23,7 @@
     <button
       [disabled]="!canStart"
       class="button is-success"
-      (click)="startMeeting()"
+      (click)="startMeeting(meeting.id)"
     >
       Start
     </button>

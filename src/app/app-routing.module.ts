@@ -14,9 +14,15 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { SettingsComponent } from './home/settings/settings.component';
 import { MeetComponent } from './meet/meet.component';
 import { PrescriptionComponent } from './meet/prescription/prescription.component';
+import { DisableRoomComponent } from './global/disable-room/disable-room.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  {
+    path: 'disable/:appointmentId',
+    component: DisableRoomComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'meet/:id',
     canActivate: [AuthGuard],

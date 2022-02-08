@@ -3,7 +3,8 @@ import { DOCUMENT } from '@angular/common';
 import { api_key } from '../secrets';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-meet',
@@ -11,12 +12,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./meet.component.css'],
 })
 export class MeetComponent implements OnInit, OnDestroy {
+  meet: Object;
   appointmentId: string;
   private userListener: Subscription;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    private homeService: HomeService,
     private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document
   ) {
@@ -34,13 +38,21 @@ export class MeetComponent implements OnInit, OnDestroy {
         const meeting = new VideoSDKMeeting();
 
         const config = {
-          name: "Shouvit Pradhan",
+          name: "${this.authService.getUser().name}",
           apiKey: "${api_key}",
-          meetingId: "telemedecine",
+          meetingId: "${this.appointmentId}",
 
           containerId: null,
-          redirectOnLeave: "http://localhost:4200/home",
-
+          redirectOnLeave: "${
+            this.authService.getIsDoctor()
+              ? this.meet['kioskRoom']
+                ? 'http://localhost:4200/disable/' + this.appointmentId
+                : 'http://localhost:4200/meet/' +
+                  this.appointmentId +
+                  '/prescription'
+              : 'http://localhost:4200/home'
+          }",
+          
           micEnabled: true,
           webcamEnabled: true,
           participantCanToggleSelfWebcam: true,
@@ -81,7 +93,7 @@ export class MeetComponent implements OnInit, OnDestroy {
           },
 
           joinScreen: {
-            visible: true, // Show the join screen ?
+            visible: false, // Show the join screen ?
             title: "Shouvit's Meeting", // Meeting title
             meetingUrl: window.location.href, // Meeting joining url
           },
@@ -103,12 +115,32 @@ export class MeetComponent implements OnInit, OnDestroy {
     this._renderer2.appendChild(this._document.body, script);
   }
 
-  public ngOnInit() {
-    console.log(this.appointmentId);
-    if (this.authService.getIsUserFetched()) this.loadMeeting();
+  ngOnInit(): void {
+    if (this.authService.getIsUserFetched()) this.setUp();
     this.userListener = this.authService
       .getAuthStatusListener()
-      .subscribe((userFetched) => userFetched && this.loadMeeting());
+      .subscribe((userFetched) => userFetched && this.setUp());
+  }
+
+  setUp() {
+    this.homeService.getAppointment(this.appointmentId).subscribe(
+      (response) => {
+        this.meet = response['data']['appointment'];
+        const allowed = this.meet['doctors'].concat(this.meet['attendees'], [
+          this.meet['creator'],
+        ]);
+        if (
+          allowed.includes(this.authService.getUserId()) ||
+          this.authService.getIsKiosk()
+        )
+          this.loadMeeting();
+        else this.router.navigate(['/home']);
+      },
+      (error) => {
+        // show error
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   ngOnDestroy(): void {

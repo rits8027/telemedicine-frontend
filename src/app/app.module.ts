@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiInterceptor } from './api.interceptor';
 import { PrescriptionComponent } from './meet/prescription/prescription.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DisableRoomComponent } from './global/disable-room/disable-room.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ProfileDetailsComponent,
     MeetComponent,
     PrescriptionComponent,
+    DisableRoomComponent,
   ],
   imports: [
     BrowserModule,
