@@ -28,4 +28,32 @@
       <app-meeting [meeting]="appointment" [isPersonal]="true"></app-meeting>
     </div>
   </section>
+
+  <section class="py-4" *ngIf="kioskRooms.length > 0">
+    <h2 class="title">Kiosk Rooms</h2>
+    <div
+      class="card p-3 mt-2 mild-transparent"
+      *ngFor="let room of kioskRooms; let i = index"
+    >
+      <div class="columns is-multiline m-0 has-text-centered is-vcentered">
+        <div class="column is-4">Dr. {{ room.doctors[0]["name"] }}</div>
+        <div class="column">
+          <span *ngFor="let patient of room.attendees" class="tag is-info mx-1">
+            {{ patient["name"] }}
+          </span>
+          &nbsp;
+        </div>
+        <div class="column is-narrow">
+          <button
+            class="button transparent borderless"
+            (click)="showPrescription(i)"
+          >
+            <figure class="image is-24x24">
+              <img src="assets/images/prescription.png" />
+            </figure>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>

@@ -100,9 +100,13 @@
           <div class="column">
             <div class="center">
               <p class="title">{{ user.name }}</p>
-              <p class="subtitle">{{ user.email }}</p>
               <p class="subtitle">
-                {{ user.phoneNumber }}
+                {{ user.email }} <br />{{ user.phoneNumber }}
+              </p>
+              <p class="subtitle">
+                Blood Group: <strong>{{ user.bloodGroup }}</strong>
+                <br />
+                Gender: <strong>{{ user.gender }}</strong>
                 <br />
                 Age: <strong>{{ ageFromDob }}</strong>
               </p>

@@ -131,4 +131,10 @@ export class HomeService {
       id: id,
     });
   }
+
+  getKioskRoom() {
+    return this.http.get(
+      AppSettings.API_ENDPOINT + '/kiosk/' + this.authService.getUserId()
+    );
+  }
 }

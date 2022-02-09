@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/Model/appointment.model';
+import { KioskRoom } from 'src/app/Model/kioskRoom.model';
 import { HomeService } from '../home.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class MeetingsComponent implements OnInit {
   isLoading = true;
   personalAppointments: Appointment[] = [];
   appointments: Appointment[] = [];
+  kioskRooms: KioskRoom[] = [];
 
   constructor(private homeService: HomeService) {}
 
@@ -38,7 +40,16 @@ export class MeetingsComponent implements OnInit {
           )
         );
       });
-      this.isLoading = false;
+      this.homeService.getKioskRoom().subscribe((response) => {
+        this.kioskRooms = response['data'];
+        console.log(this.kioskRooms);
+        this.isLoading = false;
+      });
     });
+  }
+
+  showPrescription(i: number) {
+    // TODO: show or get prescription
+    // console.log(this.kioskRooms[i]);
   }
 }

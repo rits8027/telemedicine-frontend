@@ -100,12 +100,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   addToRoom(selectRoom, selectPatient) {
     if (selectRoom.invalid || selectPatient.invalid) return;
-    console.log(selectRoom.value);
-    console.log(selectPatient.value);
     this.homeService
       .addPatientToRoom(selectRoom.value, selectPatient.value)
       .subscribe((response) => {
-        console.log(response);
+        selectRoom.reset();
+        selectPatient.reset();
       });
   }
 }
