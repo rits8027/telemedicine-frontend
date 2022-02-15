@@ -19,6 +19,7 @@ export class MeetingsComponent implements OnInit {
   ngOnInit(): void {
     this.homeService.getMeetings().subscribe((response) => {
       response['data']['personalAppointments'].forEach((appointment) => {
+        console.log(appointment);
         this.personalAppointments.push(
           new Appointment(
             appointment['_id'],
@@ -30,6 +31,7 @@ export class MeetingsComponent implements OnInit {
         );
       });
       response['data']['appointments'].forEach((appointment) => {
+        console.log(appointment);
         this.appointments.push(
           new Appointment(
             appointment['_id'],
@@ -42,7 +44,6 @@ export class MeetingsComponent implements OnInit {
       });
       this.homeService.getKioskRoom().subscribe((response) => {
         this.kioskRooms = response['data'];
-        console.log(this.kioskRooms);
         this.isLoading = false;
       });
     });

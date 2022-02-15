@@ -7,6 +7,26 @@
     <h1 class="title">Prescription</h1>
 
     <form [formGroup]="prescriptionForm" (submit)="onSubmitPrescription()">
+      <div class="field has-addons">
+        <p class="control">
+          <a class="button is-static">For:</a>
+        </p>
+        <div class="control" style="width: 100%">
+          <div class="select is-fullwidth">
+            <select
+              name="patient"
+              class="input"
+              formControlName="patient"
+              required
+            >
+              <option *ngFor="let p of patients" [value]="p._id">
+                {{ p.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="field">
         <label class="label" for="description">Problem Description</label>
         <div class="control">

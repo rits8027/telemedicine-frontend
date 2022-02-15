@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./prescription.component.css'],
 })
 export class PrescriptionComponent implements OnInit, OnDestroy {
+  patients = [];
   isLoading = true;
   appointmentId: string;
   prescriptionForm: FormGroup;
@@ -25,6 +26,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
   ) {
     this.route.params.subscribe((params) => (this.appointmentId = params.id));
     this.prescriptionForm = this.formBuilder.group({
+      patient: '',
       description: '',
       diagnosis: '',
       tests: '',
@@ -41,7 +43,7 @@ export class PrescriptionComponent implements OnInit, OnDestroy {
       .subscribe((userFetched) => userFetched && this.setStatus());
     this.homeService.getAppointment(this.appointmentId).subscribe(
       (response) => {
-        console.log(response);
+        this.patients = response['data']['attendees'];
       },
       (error) => {
         // show error

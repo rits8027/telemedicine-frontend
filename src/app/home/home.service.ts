@@ -73,6 +73,7 @@ export class HomeService {
   savePrescription(value, id: string) {
     return this.http.post(AppSettings.API_ENDPOINT + '/prescriptions/create', {
       appointmentId: id,
+      patient: value['patient'],
       patientDetails: {
         height: value['height'],
         weight: value['weight'],
