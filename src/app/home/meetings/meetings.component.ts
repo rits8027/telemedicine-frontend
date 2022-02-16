@@ -26,7 +26,9 @@ export class MeetingsComponent implements OnInit {
             appointment['creator'],
             appointment['doctors'][0],
             appointment['appointmentStartTime'],
-            appointment['appointmentEndTime']
+            appointment['appointmentEndTime'],
+            appointment['attendees'],
+            appointment['prescriptionLinks']
           )
         );
       });
@@ -38,7 +40,9 @@ export class MeetingsComponent implements OnInit {
             appointment['creator'],
             appointment['doctors'][0],
             appointment['appointmentStartTime'],
-            appointment['appointmentEndTime']
+            appointment['appointmentEndTime'],
+            appointment['attendees'],
+            appointment['prescriptionLinks']
           )
         );
       });

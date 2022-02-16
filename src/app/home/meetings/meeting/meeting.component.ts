@@ -33,12 +33,20 @@ export class MeetingComponent implements OnInit {
   }
 
   loadPrescription(id: string) {
-    console.log(id);
-    // if (!this.isPersonal)
-    //   this.homeService.getPrescriptions(id).subscribe((response) => {
-    //     if (response['data']['prescriptions'].length == 0) {
-    // add notification
-    this.router.navigate([`/meet/${id}/prescription`]);
+    if (
+      !this.isPersonal &&
+      this.meeting.attendees[0]['_id'] !==
+        this.meeting.prescriptions[0]['patient']
+    ) {
+      this.router.navigate([`/meet/${id}/prescription`]);
+    } else {
+      // TODO: show prescription here
+    }
+    // this.homeService.getPrescriptions(id).subscribe((response) => {
+    //   console.log(response);
+    //   if (response['data']['prescriptions'].length == 0) {
+    //     // add notification
+    //     this.router.navigate([`/meet/${id}/prescription`]);
     //   }
     // });
   }
