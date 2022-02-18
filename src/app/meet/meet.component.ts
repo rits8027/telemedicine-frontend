@@ -125,7 +125,7 @@ export class MeetComponent implements OnInit, OnDestroy {
   setUp() {
     this.homeService.getAppointment(this.appointmentId).subscribe(
       (response) => {
-        this.meet = response['data']['appointment'];
+        this.meet = response['data'];
         const allowed = this.meet['doctors'].concat(this.meet['attendees'], [
           this.meet['creator'],
         ]);

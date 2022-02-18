@@ -41,6 +41,7 @@ export class MeetingComponent implements OnInit {
       this.router.navigate([`/meet/${id}/prescription`]);
     } else {
       // TODO: show prescription here
+      console.log('prescription here');
     }
     // this.homeService.getPrescriptions(id).subscribe((response) => {
     //   console.log(response);
