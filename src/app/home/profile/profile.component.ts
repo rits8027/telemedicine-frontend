@@ -44,20 +44,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.ageFromDob = Math.round(
         (Date.now() - +new Date(this.user.dob)) / 31557600000
       );
-      if (this.isKiosk) {
-        this.homeService.getRooms().subscribe((response) => {
-          this.rooms = response['data'];
-          this.homeService.getPatients().subscribe((response) => {
-            this.patients = response['data'];
-            this.isLoading = false;
-          });
-        });
-      } else this.isLoading = false;
-    } else this.isLoading = false;
+      if (this.isKiosk) this.loadKiosk();
+      else this.isLoading = false;
+    } else {
+      // TODO: get doc status here
+      // this.homeService.getStats();
+      this.isLoading = false;
+    }
   }
 
   ngOnDestroy(): void {
     this.userListener.unsubscribe();
+  }
+
+  loadKiosk() {
+    this.isLoading = true;
+    this.homeService.getRooms().subscribe((response) => {
+      this.rooms = response['data'];
+      this.homeService.getPatients().subscribe((response) => {
+        this.patients = response['data'];
+        this.isLoading = false;
+      });
+    });
   }
 
   query(form: NgForm) {
@@ -96,6 +104,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   joinRoom(selectRoom) {
     if (selectRoom.invalid) return;
     this.router.navigate(['/meet/' + selectRoom.value]);
+  }
+
+  endRoom(selectRoom) {
+    if (selectRoom.invalid) return;
+    this.homeService.disableRoom(selectRoom.value).subscribe((response) => {
+      // TODO: add notification here
+      selectRoom.reset();
+      this.loadKiosk();
+    });
   }
 
   addToRoom(selectRoom, selectPatient) {
