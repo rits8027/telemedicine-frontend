@@ -64,6 +64,7 @@
                     name="startTime"
                     class="input"
                     autocomplete="off"
+                    min="{{ getToday() }}"
                     required
                     ngModel
                     #startTime="ngModel"
@@ -78,6 +79,7 @@
                     name="endTime"
                     class="input"
                     autocomplete="off"
+                    min="{{ getToday() }}"
                     required
                     ngModel
                     #endTime="ngModel"

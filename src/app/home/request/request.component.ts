@@ -26,7 +26,10 @@ export class RequestComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (form.invalid) {
+    if (form.invalid || form.value.startTime >= form.value.endTime) {
+      alert(
+        'All fields must be filled!\nStart Time should come before the End Time'
+      );
       return;
     }
     this.homeService
@@ -45,5 +48,10 @@ export class RequestComponent implements OnInit {
         // add notification here
       });
     this.requests.splice(index, 1);
+  }
+
+  getToday() {
+    let date = new Date().toISOString();
+    return date.substring(0, date.lastIndexOf(':'));
   }
 }

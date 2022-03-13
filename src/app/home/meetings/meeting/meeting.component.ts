@@ -33,15 +33,14 @@ export class MeetingComponent implements OnInit {
   }
 
   loadPrescription(id: string) {
-    if (
-      !this.isPersonal &&
-      this.meeting.attendees[0]['_id'] !==
-        this.meeting.prescriptions[0]['patient']
-    ) {
-      this.router.navigate([`/meet/${id}/prescription`]);
+    if (this.meeting.prescriptions.length === this.meeting.attendees.length) {
+      console.log('show prescription');
     } else {
-      // TODO: show prescription here
-      console.log('prescription here');
+      if (!this.isPersonal) {
+        this.router.navigate([`/meet/${id}/prescription`]);
+      } else {
+        alert('prescription doesnt exist');
+      }
     }
     // this.homeService.getPrescriptions(id).subscribe((response) => {
     //   console.log(response);
